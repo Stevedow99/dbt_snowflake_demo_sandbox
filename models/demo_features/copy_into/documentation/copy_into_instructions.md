@@ -51,7 +51,7 @@
 
 - This is my reference to my external stage
 
-![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled.png)
+![Untitled](doc_pics/Untitled.png)
 
 - database: the name of the database where my external stage lives
 - schema: the name of the schema where my external stage lives
@@ -62,7 +62,7 @@
 
 - I created this model to grab info out of the external stage, parse and name the columns into the right data type
 
-![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%201.png)
+![Untitled](doc_pics/Untitled%201.png)
 
 - Notice that i'm using the "@" before my source call to let Snowflake know it's a stage
 - I also provide a file format that I created in Snowflake, in this file format I call it in the following way `<DATABASE>.<SCHEMA>.<FILE_FORMAT_NAME>`
