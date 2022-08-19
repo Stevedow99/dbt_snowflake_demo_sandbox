@@ -1,6 +1,6 @@
 -- using the copy into config i'm getting data from an externals stage and leveraging the "COPY INTO" command in snowflake
 -- this will create a table that is the same name of your model and run "COPY INTO" every time you run only picking up new files
--- you can also you the "--full-refresh flag" to drop the table and recreate it in Snowflake and reload
+-- you can also use the "--full-refresh" flag to re-reun the create table statement before running "COPY INTO"
 -- notice that i'm using the "@" before my source call to let Snowflake know it's a stage
 -- I also provide a file format that I created in snowflake, in this file format I provide <DATABASE>.<SCHEMA>.<FILE_FORMAT_NAME>
 -- File formats live inside a database & schema so you need these prefixes to pick up the right ones
