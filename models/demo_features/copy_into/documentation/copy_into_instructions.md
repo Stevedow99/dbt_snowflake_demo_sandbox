@@ -1,5 +1,3 @@
-# Snowflake COPY INTO Command
-
 ## `COPY INTO` Snowflake Materialization Documentation
 
 - **All credit for this solution goes to [Randy Pitcher](https://github.com/randypitcherii) on the [original solution](https://github.com/randypitcherii/dbt_workspace/blob/production/dbt/macros/materializations/copy_into/copy_into.sql) - I’m just documenting it.**
