@@ -70,32 +70,32 @@
     
 - Right away in dbt cloud, I can see the linage of grabbing from my external stage and putting data into my new table
     
-    ![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%202.png)
+    ![Untitled](doc_pics//Untitled%202.png)
     
 - If I click preview I’ll see the data in my external stage based on the query I wrote:
     
-    ![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%203.png)
+    ![Untitled](doc_pics//Untitled%203.png)
     
 
 **Running my model (`dbt run -s copy_into_demo` ):**
 
 - Kick my model off in dbt cloud
     
-    ![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%204.png)
+    ![Untitled](doc_pics//Untitled%204.png)
     
 - If my model is running for the first time:
     - This will create a table in Snowflake named `COPY_INTO_DEMO` where every time the model is run, the copy into command will be run to get new data from the external stage and put it into the table
     - The `COPY INTO` command that got run in Snowflake for my example
         
-        ![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%205.png)
+        ![Untitled](doc_pics//Untitled%205.png)
         
         - The logging output from this run in Snowflake, I can see two files got picked up and loaded into my table:
             
-            ![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%206.png)
+            ![Untitled](doc_pics//Untitled%206.png)
             
         - What my final table looks like in Snowflake with the loaded data:
             
-            ![Untitled](Snowflake%20COPY%20INTO%20Command%2006386a7ec14e499ab8b6a92ee7edd934/Untitled%207.png)
+            ![Untitled](doc_pics//Untitled%207.png)
             
 
 - If I run the model again after putting new files in the external stage, it will ONLY pick up those new files and put them into my table
