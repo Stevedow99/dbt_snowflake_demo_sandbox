@@ -75,4 +75,4 @@ seeds:
     snowflake_contract_rates:
       +column_types:
         effective_date: DATE
-        rate: NUMBER   
+        rate: NUMBER

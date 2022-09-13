@@ -1,3 +1,13 @@
+{{
+    config(
+        materialized='table',
+        post_hook = [
+            "{{snowflake_query_logging(this)}}"
+        ]
+    )
+}}
+
+
 select
     date_trunc(month, order_date) as order_month,
     sum(gross_item_sales_amount) as gross_revenue
