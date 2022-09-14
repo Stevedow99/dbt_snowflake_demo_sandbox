@@ -1,8 +1,3 @@
-# Snowflake Logging Macro
-
-Client Requesting: https://fishtown.lightning.force.com/lightning/r/dbt_Cloud_Account__c/a0r4v00000BeR34AAF/view
-Tags: Macros
-
 # Snowflake Logging Macro Documentation:
 
 ### Objects that need to be set up to leverage this solution:
