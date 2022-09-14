@@ -1,3 +1,11 @@
+{{
+    config(
+        post_hook = [
+            "{{snowflake_query_logging(this)}}"
+        ]
+    )
+}}
+
 with part as (
     
     select * from {{ ref('stg_tpch_parts') }}
