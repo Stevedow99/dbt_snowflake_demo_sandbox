@@ -9,6 +9,10 @@
 2. Need to add the `snowflake_query_logging` macro as a post hook to the model you would like to log
     - An example model with this post-hook can be found [here on github](https://github.com/Stevedow99/dbt_snowflake_demo_sandbox/blob/main/models/demo_features/snowflake_logging/snowflake_logging_example.sql)
         - note: when you configure the macro in a post hook, the input parameter is `this` - `this` refers to the model that is running the macro. More info on the `this` command can be found [here](https://docs.getdbt.com/reference/dbt-jinja-functions/this).
+
+
+### Video demo on using the macro
+[Demo Video](https://www.loom.com/share/a3938814f6c448b7a903b42f2ab64bd3)
     
 
 ### What does the macro do?:
