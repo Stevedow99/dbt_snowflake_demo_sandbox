@@ -143,12 +143,6 @@ models:
           - unique
           - not_null
       - name: customer_key
-        description: foreign key for customers
-        tests:
-          - relationships:
-              to: ref('dim_customers')
-              field: customer_key
-              severity: warn
       - name: order_date
         description: date of the order
       - name: status_code
