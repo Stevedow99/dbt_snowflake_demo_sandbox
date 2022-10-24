@@ -2,6 +2,8 @@ version: 2
 
 exposures:
   - name: company_sales_dashboard
+    config:
+        enabled: false
     tags: ['finance', 'RevOps']
     description: |
       # Company Sales Dashboard

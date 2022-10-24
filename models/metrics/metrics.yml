@@ -1,0 +1,16 @@
+version: 2
+
+metrics:
+  - name: Revenue
+    label: Revenue
+    model: ref('monthly_gross_revenue_metrics')
+    description: "The total revenue of the business"
+
+    calculation_method: sum
+    expression: gross_revenue
+
+    timestamp: order_month
+    time_grains: [month, year]
+
+    dimensions:
+      - region_name

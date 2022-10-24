@@ -1,6 +1,7 @@
 {{
     config(
         materialized='table',
+        enabled= false,
         post_hook = [
             "{{snowflake_query_logging(this)}}"
         ]
