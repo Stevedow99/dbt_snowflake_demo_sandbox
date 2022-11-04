@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: monthly_gross_revenue
+  - name: monthly_gross_revenue_metrics
     description: '{{ doc("monthly_gross_revenue_desc") }}'
     config:
       tags: ['finance', 'RevOps']
@@ -10,7 +10,9 @@ models:
         description: The month the order was placed
         tests:
           - not_null
-
-
       - name: gross_revenue
         description: the gross revenue generated for the given line item
+        tests:
+          - dbt_expectations.expect_column_median_to_be_between:
+              min_value: 5000
+              max_value: 100000
