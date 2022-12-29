@@ -1,0 +1,48 @@
+# This is a basic workflow to show using this action
+
+# name of the workflow
+name: Alerting by making a PR comment and sending and email if a model is changed in the dbt project
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'models/**'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "cancel_running_slim_ci_jobs"
+  make_comment_and_email_on_model_change:
+  
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+     - name: Get changed files in the models folder
+       id: changed_files_in_models_folder
+       uses: tj-actions/changed-files@v35
+       with:
+         files: |
+             models/**
+             
+     - name: PR comment if any models were deleted
+       if: steps.changed_files_in_models_folder.any_deleted == 'true'
+       uses: mshick/add-pr-comment@v1
+       with:
+          message: |
+            ### ⚠️ Warning this PR contains models that have been deleted
+            The following models have been deleted:
+            ${{ steps.changed_files_in_models_folder.outputs.deleted_files }}
+            
+     - name: PR comment if any models were modified
+       if: steps.changed_files_in_models_folder.any_modified == 'true'
+       uses: mshick/add-pr-comment@v1
+       with:
+          message: |
+            ### ⚠️ Warning this PR contains models that have been modified
+            The following models have been deleted:
+            ${{ steps.changed_files_in_models_folder.outputs.modified_files }}
