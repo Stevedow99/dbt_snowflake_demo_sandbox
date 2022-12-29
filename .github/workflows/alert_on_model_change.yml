@@ -31,7 +31,7 @@ jobs:
        uses: tj-actions/changed-files@v35
        with:
          files: |
-             models/general_models/samples**
+             models/general_models/samples/**
              
      - name: echo outputs
        run: |
