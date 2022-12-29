@@ -1,7 +1,7 @@
 # A github action to trigger based on changes to dbt models
 
 # name of the workflow
-name: Alerting by making a PR comment and sending and email if any model(s) are modified or deleted in the dbt project
+name: Alerting by making a PR comment and then doing additonal steps if any model(s) are modified or deleted in the dbt project
 
 # Controls when the workflow will run
 on:
@@ -42,6 +42,8 @@ jobs:
             ### ⚠️ Warning this PR contains models that have been deleted
             The following models have been deleted:
             ${{ steps.changed_files_in_models_folder.outputs.deleted_files }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token-user-login: 'github-actions[bot]'
             
        # creating a PR comment that models have been modified
      - name: PR comment if any models were modified
