@@ -1,7 +1,7 @@
 # This is a basic workflow to show using this action
 
 # name of the workflow
-name: Alerting by making a PR comment and sending and email if a model is changed in the dbt project
+name: Alerting by making a PR comment and sending and email if any model(s) are modified or deleted in the dbt project
 
 # Controls when the workflow will run
 on:
