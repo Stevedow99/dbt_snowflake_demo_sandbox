@@ -60,4 +60,12 @@ jobs:
             ${{ steps.changed_files_in_models_folder.outputs.modified_files }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
-          allow-repeats: false # This is the default
+          
+     - name: Require additonal approval if a model(s) was modified or deleted
+       if: steps.changed_files_in_models_folder.outputs.any_deleted == 'true' || steps.changed_files_in_models_folder.outputs.any_modified == 'true'
+       uses: trstringer/manual-approval@v1
+       with:
+        secret: ${{ secrets.GITHUB_TOKEN }}
+        approvers: Stevedow99
+        minimum-approvals: 1
+        issue-title: "Deploying v1.3.5 to prod from staging"
