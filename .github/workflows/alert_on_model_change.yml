@@ -33,6 +33,14 @@ jobs:
          files: |
              models/**
              
+     - name: echo outputs
+       run: |
+          echo ${{ steps.changed-files.outputs.any_deleted }}
+          echo ${{ steps.changed-files.outputs.any_modified }}
+          echo ${{ steps.changed-files.outputs.modified_files }}
+          echo ${{ steps.changed-files.outputs.deleted_files }}
+
+             
      - name: PR comment if any models were deleted
        if: steps.changed_files_in_models_folder.any_deleted == 'true'
        uses: mshick/add-pr-comment@v1
