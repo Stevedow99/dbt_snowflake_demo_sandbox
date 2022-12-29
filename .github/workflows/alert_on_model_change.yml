@@ -31,14 +31,14 @@ jobs:
        uses: tj-actions/changed-files@v35
        with:
          files: |
-             models/general_models/samples**
+             models/general_models/samples/**
              
      - name: echo outputs
        run: |
-          echo ${{ steps.changed-files.outputs.any_deleted }}
-          echo ${{ steps.changed-files.outputs.any_modified }}
-          echo ${{ steps.changed-files.outputs.modified_files }}
-          echo ${{ steps.changed-files.outputs.deleted_files }}
+          echo ${{ steps.changed_files_in_models_folder.outputs.any_deleted }}
+          echo ${{ steps.changed_files_in_models_folder.outputs.any_modified }}
+          echo ${{ steps.changed_files_in_models_folder.outputs.modified_files }}
+          echo ${{ steps.changed_files_in_models_folder.outputs.deleted_files }}
 
              
      - name: PR comment if any models were deleted
