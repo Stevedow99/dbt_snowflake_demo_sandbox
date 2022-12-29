@@ -31,7 +31,7 @@ jobs:
        uses: tj-actions/changed-files@v35
        with:
          files: |
-             models/general_models/samples/**
+             models/**
              
      - name: echo outputs
        run: |
@@ -42,7 +42,7 @@ jobs:
 
              
      - name: PR comment if any models were deleted
-       if: steps.changed_files_in_models_folder.any_deleted == 'true'
+       if: steps.changed_files_in_models_folder.outputs.any_deleted == 'true'
        uses: mshick/add-pr-comment@v1
        with:
           message: |
@@ -51,7 +51,7 @@ jobs:
             ${{ steps.changed_files_in_models_folder.outputs.deleted_files }}
             
      - name: PR comment if any models were modified
-       if: steps.changed_files_in_models_folder.any_modified == 'true'
+       if: steps.changed_files_in_models_folder.outputs.any_modified == 'true'
        uses: mshick/add-pr-comment@v1
        with:
           message: |
