@@ -2,8 +2,12 @@
 
 {{ config(
     materialized = 'table', 
-    post_hook = [conditonal_grant({ 'default': { 'select': ['transformer'] } })]
+    post_hook = conditonal_grant(
+                    { 'default': { 'select': ['transformer', 'steve_d_demo_role'], 'insert': ['transformer', 'steve_d_demo_role'] }, 
+                      'prod': { 'select': ['transformer', 'steve_d_demo_role']} 
+                    })
     ) }}
+
 
 
 
