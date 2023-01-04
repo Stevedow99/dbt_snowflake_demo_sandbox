@@ -1,9 +1,10 @@
+
+
 {{ config(
     materialized = 'table', 
-    grants = {
-    'select': conditonal_grant("yes")
-        }
+    post_hook = [conditonal_grant({ 'default': { 'select': ['transformer'] } })]
     ) }}
+
 
 
 Select 

@@ -30,57 +30,59 @@
 
 #}
 {# ########################################################################################################################## #}
-{# 
+
 {% macro conditonal_grant(target_grants_dictionary) %}
 
-
-{ 'dev': { 'select': ['bi_user'] }, 'prod': { 'select': ['bi_user', 'reporter'], 'insert': ['bi_user', 'reporter'] } }
-
-{# if there is an execution of a run or build we run this post hook #
-
+    {# if there is an execution of a run or build we run this post hook #}
     {% if execute and flags.WHICH in ['run','build'] %}
 
-    -- {# looping thru the dict to see if any of the targets match the set target name #
-    {% for target_name in in target_grants_dictionary %}
+        {# looping thru the dict to see if any of the targets match the set target name #}
+        {% for target_name in target_grants_dictionary %}
 
-        {# if the target name macthes the current target #
-        {% if target_name == target.name %}
+            {# if the target name macthes the current target #}
+            {% if target_name == target.name %}
 
-            {# set the target name privileges #
-            {% set privilege_dict =  target_grants_dictionary[target_name] %}
+                {# set the target name privileges #}
+                {% set privilege_dict =  target_grants_dictionary[target_name] %}
 
-            {# looping thru the dict to apply grants to each privilege type #
-            {% for privilege_type in privilege_dict %}
+                {# looping thru the dict to apply grants to each privilege type #}
+                {% for privilege_type in privilege_dict %}
 
-                {# building the grant statement #
-                {% set conditional_grant_statement = grant {{privilege_type}} to {{privilege_dict[privilege_type]}} -%}
-                    grant {{privilege_type}} on {{ relation.type }} {{this}} to {{privilege_dict[privilege_type]}}
-                {%- endcall-%}
+                    {% set user_grant_list = privilege_dict[privilege_type] %}
 
-#}
-{#
+                    {# looping thru each user that needs to get grants #}
+                    {% for granted_user in user_grant_list %}
 
+                        {# building the grant statement #}
+                        {% set conditional_grant_statement = "grant " ~ privilege_type ~ " on " ~ this ~ " to " ~ granted_user -%}
 
+                        {# running the grant statement #}
+                        {% set grant_results = run_query(conditional_grant_statement) %}
 
+                        {# running the logging statement #}
+                        {% do log("===========================================================") %}
+                        {% do log("==================== BEGIN LOGGING ========================") %}
+                        {% do log("===========================================================") %}
+                        {% do log(grant_results) %}
+                        {% do log(grant_results.columns[0]) %}
+                        {% do log(grant_results.columns[0].values()) %}
+                        {% do log("===========================================================") %}
+                        {% do log("==================== END LOGGING ========================") %}
+                        {% do log("===========================================================") %}
 
+                    {# end user_grant_list for loop #}
+                    {% endfor %}
+                
+                {# end privilege_dict for loop #}
+                {% endfor %}
 
-            {% call statement('apply_conditional_grant', fetch_result=False) -%}
-                select last_query_id() as last_query_id
-            {%- endcall-%}  
+            {# end target name if statement #}
+            {% endif %}
 
+        {# end target_grants_dictionary for loop #}
+        {% endfor %}
 
-        
-        {% if test == 'yes' %}
-
-            {%- set grant_role_name = 'TRANSFORMER' -%}
-
-        {% else %}
-            
-            {%- set grant_role_name = 'STEVE_D_DEMO_ROLE' -%}
-            
-        {% endif %}
-
+    {# end if execute if statement #}
     {% endif %}
 
 {% endmacro %}
-#}
