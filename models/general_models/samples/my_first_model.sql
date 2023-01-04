@@ -1,4 +1,9 @@
-
+{{ config(
+    materialized = 'table', 
+    grants = {
+    'select': conditonal_grant("yes")
+        }
+    ) }}
 
 
 Select 
