@@ -31,58 +31,57 @@
 #}
 {# ########################################################################################################################## #}
 
-{% macro conditonal_grant_testing(target_grants_dictionary) %}
+{%- macro conditonal_grant_testing(target_grants_dictionary) -%}
 
     {# if there is an execution of a run or build we run this post hook #}
-    {% if execute and flags.WHICH in ['run','build'] %}
+    {%- if 2 > 1 -%}
+
+    {# if there is an execution of a run or build we run this post hook. Instead of using a formal list we want this in string so we can use other post hooks if needed in our model  #}
+    {%- set post_hook_list = [] -%}
 
         {# looping thru the dict to see if any of the targets match the set target name #}
-        {% for target_name in target_grants_dictionary %}
+        {%- for target_name in target_grants_dictionary -%}
 
             {# if the target name macthes the current target #}
-            {% if target_name == target.name %}
+            {%- if target_name == target.name -%}
 
                 {# set the target name privileges #}
-                {% set privilege_dict =  target_grants_dictionary[target_name] %}
+                {%- set privilege_dict =  target_grants_dictionary[target_name] -%}
 
                 {# looping thru the dict to apply grants to each privilege type #}
-                {% for privilege_type in privilege_dict %}
+                {%- for privilege_type in privilege_dict -%}
 
-                    {% set user_grant_list = privilege_dict[privilege_type] %}
+                    {# the list of users to grant #}
+                    {%- set user_grant_list = privilege_dict[privilege_type] -%}
 
                     {# looping thru each user that needs to get grants #}
-                    {% for granted_user in user_grant_list %}
+                    {%- for granted_user in user_grant_list -%}
 
                         {# building the grant statement #}
-                        {% set conditional_grant_statement = "grant " ~ privilege_type ~ " on " ~ this ~ " to " ~ granted_user -%}
+                        {%- set conditional_grant_statement = '"' ~ "grant " ~ privilege_type ~ " on " ~ this ~ " to " ~ granted_user ~ '"' -%}
 
-                        {# running the grant statement #}
-                        {% set grant_results = run_query(conditional_grant_statement) %}
-
-                        {# running the logging statement - this can be trimmed down, I like lots of logging #}
-                        {% do log("===========================================================") %}
-                        {% do log("================= BEGIN GRANT LOGGING =====================") %}
-                        {% do log("===========================================================") %}
-                        {% do log("ran grant statement: " ~ conditional_grant_statement) %}
-                        {% do log("got the following execution status back from grant statement:") %}
-                        {% do log(grant_results.columns[0].values()[0]) %}
-                        {% do log("===========================================================") %}
-                        {% do log("================= END GRANT LOGGING  ======================") %}
-                        {% do log("===========================================================") %}
+                        {# adding the grant to the post hooks list #}
+                        {%- do post_hook_list.append(conditional_grant_statement) -%}
 
                     {# end user_grant_list for loop #}
-                    {% endfor %}
+                    {%- endfor -%}
                 
                 {# end privilege_dict for loop #}
-                {% endfor %}
+                {%- endfor -%}
 
             {# end target name if statement #}
-            {% endif %}
+            {%- endif -%}
 
         {# end target_grants_dictionary for loop #}
-        {% endfor %}
+        {%- endfor -%}
 
     {# end if execute if statement #}
-    {% endif %}
+    {%- endif -%}
 
-{% endmacro %}
+    {# formatting how the list should be returned #}
+    {%- set post_hook_list_formatted =  post_hook_list | join(', ') -%}
+
+    {# return the post hooks list #}
+    {{post_hook_list_formatted}}
+
+{%- endmacro -%}
