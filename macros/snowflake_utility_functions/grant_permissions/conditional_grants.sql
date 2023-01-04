@@ -63,8 +63,8 @@
                         {% do log("===========================================================") %}
                         {% do log("================= BEGIN GRANT LOGGING =====================") %}
                         {% do log("===========================================================") %}
-                        {% do log("ran grant statement " ~ conditional_grant_statement %}
-                        {% do log("got the following execution status back from grant statement:" %}
+                        {% do log("ran grant statement " ~ conditional_grant_statement) %}
+                        {% do log("got the following execution status back from grant statement:") %}
                         {% do log(grant_results.columns[0].values()[0]) %}
                         {% do log("===========================================================") %}
                         {% do log("================= END GRANT LOGGING  ======================") %}
