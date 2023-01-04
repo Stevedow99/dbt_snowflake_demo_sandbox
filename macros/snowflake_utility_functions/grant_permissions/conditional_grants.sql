@@ -59,15 +59,15 @@
                         {# running the grant statement #}
                         {% set grant_results = run_query(conditional_grant_statement) %}
 
-                        {# running the logging statement #}
+                        {# running the logging statement - this can be trimmed down, I like lots of logging #}
                         {% do log("===========================================================") %}
-                        {% do log("==================== BEGIN LOGGING ========================") %}
+                        {% do log("================= BEGIN GRANT LOGGING =====================") %}
                         {% do log("===========================================================") %}
-                        {% do log(grant_results) %}
-                        {% do log(grant_results.columns[0]) %}
-                        {% do log(grant_results.columns[0].values()) %}
+                        {% do log("ran grant statement " ~ conditional_grant_statement %}
+                        {% do log("got the following execution status back from grant statement:" %}
+                        {% do log(grant_results.columns[0].values()[0]) %}
                         {% do log("===========================================================") %}
-                        {% do log("==================== END LOGGING ========================") %}
+                        {% do log("================= END GRANT LOGGING  ======================") %}
                         {% do log("===========================================================") %}
 
                     {# end user_grant_list for loop #}
