@@ -79,9 +79,6 @@
     {# end if execute if statement #}
     {%- endif -%}
 
-    {# formatting how the list should be returned #}
-    {#%- set post_hook_list_formatted =  post_hook_list | join(', ') -%#}
-
     {# return the post hooks list #}
     {{return(post_hook_list)}}
 
