@@ -1,7 +1,7 @@
 -- using the conditonal grant macro along with other post hooks
 
 {% set post_hooks =  conditonal_grant(
-                    { 'default': { 'select': ['transformer', 'steve_d_demo_role'], 'insert': ['transformer', 'steve_d_demo_role'] }, 
+                    { 'dev': { 'select': ['transformer', 'steve_d_demo_role'], 'insert': ['transformer', 'steve_d_demo_role'] }, 
                       'prod': { 'select': ['transformer', 'steve_d_demo_role']} 
                     })
                     %}
