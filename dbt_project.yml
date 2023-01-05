@@ -61,6 +61,12 @@ models:
       +materialized: view
       +schema: staging
 
+    exposures:
+      +enabled: true
+
+    metrics:
+      +enabled: true
+
     marts:
       core:
         +materialized: table
