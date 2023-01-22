@@ -57,6 +57,13 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
           
+          
+     - name: Run script file
+       run: |
+          echo "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
+          echo "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
+
+          
 # -------------------------------------------------------------------------------------------------------
 # if you want to set it up so additonal approvers are required on model changes this action will do so
 # -------------------------------------------------------------------------------------------------------
