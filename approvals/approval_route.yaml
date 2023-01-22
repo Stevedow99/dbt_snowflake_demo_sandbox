@@ -1,0 +1,6 @@
+approvals:
+
+  finance_models:
+    path: "/models/finance/*"
+    approvers:
+      - Stevedow99
