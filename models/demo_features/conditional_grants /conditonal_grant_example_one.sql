@@ -1,7 +1,7 @@
 -- example of using the conditonal grant macro to grant different permissions depending on the target
 
 {{ config(
-    materialized = 'table', 
+    materialized = 'view', 
     post_hook = conditonal_grant(
                     { 'dev': { 'select': ['transformer', 'steve_d_demo_role'], 'insert': ['transformer', 'steve_d_demo_role'] }, 
                       'prod': { 'select': ['transformer', 'steve_d_demo_role']} 
