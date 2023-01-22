@@ -1,0 +1,10 @@
+approvals:
+
+ finance_models: "/models/finance/*"
+  approvers:
+    - stevedow99
+    
+    
+ marketing_models: "/models/marketing/*"
+  approvers:
+    - stevedow99
