@@ -97,6 +97,15 @@ jobs:
           
           # if there are updated models we check for approvers
           if updated_models_list != None:
+            
+            # setting a string version of the updated models to use as an output
+            updated_models_output = (str(updated_models_list)
+                                    .replace('[','')
+                                    .replace(']','')
+                                    .replace("'",""))
+                                    
+            # setting the output for updated models to make the approval request have more detail                        
+            set_output("updated_models_output", updated_models_output)
           
             # set the output of updated models to true
             updated_models_flag = "TRUE"
@@ -151,3 +160,4 @@ jobs:
         approvers: "${{ steps.get_needed_approvers.outputs.approver_list }}"
         minimum-approvals: 1
         issue-title: "A change to dbt models was made that could be a breaking change, please review as one of the models is relavant to your team"
+        issue-body: "The following models were changed ${{ steps.get_needed_approvers.outputs.updated_models_output }}, at least one of these models fall under your approval"
