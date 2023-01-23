@@ -114,6 +114,7 @@ jobs:
           echo "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
           echo "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
           echo "${{ steps.get_needed_approvers.outputs.approver_list }}"
+          echo "test"
           echo "${{ steps.get_needed_approvers.outputs.test }}"
 
           
