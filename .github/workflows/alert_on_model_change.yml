@@ -109,6 +109,8 @@ jobs:
           set_output("testtwo", changed_models)
           set_output("testthree", str(changed_models_list))
           set_output("testfour", str(conf))
+          set_output("testfive", str(flattened_approval_group))
+          set_output("testsix", str(approver_list_unique))
            
           
           
@@ -122,6 +124,8 @@ jobs:
           echo "${{ steps.get_needed_approvers.outputs.testtwo }}"
           echo "${{ steps.get_needed_approvers.outputs.testthree }}"
           echo "${{ steps.get_needed_approvers.outputs.testfour }}"
+          echo "${{ steps.get_needed_approvers.outputs.testfive }}"
+          echo "${{ steps.get_needed_approvers.outputs.testsix }}"
 
           
 # -------------------------------------------------------------------------------------------------------
