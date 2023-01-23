@@ -6,6 +6,6 @@ approvals:
       - Stevedow99
 
   marketing_models:
-    path: "models/finance/"
+    path: "models/marketing/"
     approvers:
       - Stevedow99
