@@ -131,7 +131,7 @@ jobs:
           
           
           
-     - name: Run script file
+     - name: Run script file to test outputs - not needed - use for testing
        run: |
           echo "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
           echo "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
@@ -143,11 +143,11 @@ jobs:
 # -------------------------------------------------------------------------------------------------------
 # if you want to set it up so additonal approvers are required on model changes this action will do so
 # -------------------------------------------------------------------------------------------------------
-#      - name: Require additonal approval if a model(s) was modified or deleted
-#        if: steps.changed_files_in_models_folder.outputs.any_deleted == 'true' || steps.changed_files_in_models_folder.outputs.any_modified == 'true'
-#        uses: trstringer/manual-approval@v1
-#        with:
-#         secret: ${{ secrets.GITHUB_TOKEN }}
-#         approvers: approvers: user1,user2,org-team1
-#         minimum-approvals: 1
-#         issue-title: "A change to dbt models was made that could be a breaking change, please review"
+     - name: Require additonal approval if a model(s) was modified or deleted
+       if: steps.get_needed_approvers.outputs.updated_models_flag == 'TRUE'
+       uses: trstringer/manual-approval@v1
+       with:
+        secret: ${{ secrets.GITHUB_TOKEN }}
+        approvers: "${{ steps.get_needed_approvers.outputs.updated_models_flag }}"
+        minimum-approvals: 1
+        issue-title: "A change to dbt models was made that could be a breaking change, please review as one of the models is relavant to your team"
