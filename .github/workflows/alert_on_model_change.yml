@@ -104,6 +104,8 @@ jobs:
                                   
           # setting the approver list output
           set_output("approver_list", approver_list_formated)
+          print(1)
+          set_output("test", "testing")
            
           
           
@@ -112,6 +114,8 @@ jobs:
           echo "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
           echo "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
           echo "${{ steps.get_needed_approvers.outputs.approver_list }}"
+          echo "test"
+          echo "${{ steps.get_needed_approvers.outputs.test }}"
 
           
 # -------------------------------------------------------------------------------------------------------
