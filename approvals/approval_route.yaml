@@ -5,7 +5,7 @@ approvals:
     approvers:
       - Stevedow99
 
-  marketing_models:
-    path: "models/marketing/"
+  experimental_marketing_models:
+    path: "models/marketing/experimental/"
     approvers:
       - Stevedow99
