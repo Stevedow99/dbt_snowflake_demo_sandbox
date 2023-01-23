@@ -78,7 +78,7 @@ jobs:
               flattened_approval_group[conf['approvals'][approval_groups]['path']] = conf['approvals'][approval_groups]['approvers']
 
           # get the list of changed and deleted models
-          changed_models = "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
+          changed_models = "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
 
           # convert changed and deleted models into a list
           if len(changed_models) > 0:
