@@ -77,41 +77,58 @@ jobs:
           for approval_groups in conf['approvals']:
               flattened_approval_group[conf['approvals'][approval_groups]['path']] = conf['approvals'][approval_groups]['approvers']
 
-          # get the list of changed and deleted models
+          # get the changed and deleted models
           changed_models = "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
+          deleted_models = "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
+          
+          # converting them to list if they are valid
+          changed_models_list = changed_models.split(" ") if len(changed_models) > 0 else None
+          deleted_models_list = deleted_models.split(" ") if len(deleted_models) > 0 else None
+          
+          # putting the listed together
+          if deleted_models_list != None and changed_models_list != None:
+              updated_models_list = deleted_models_list + changed_models_list
+          elif deleted_models_list != None and changed_models_list == None:
+              updated_models_list = deleted_models_list
+          elif deleted_models_list == None and changed_models_list != None:
+              updated_models_list = changed_models_list
+          else:
+              updated_models_list = None
+          
+          # if there are updated models we check for approvers
+          if updated_models_list != None:
+          
+            # set the output of updated models to true
+            updated_models_flag = "TRUE"
 
-          # convert changed and deleted models into a list
-          if len(changed_models) > 0:
-              changed_models_list = changed_models.split(" ")
+            # create an empty list to fill with all approvers
+            approver_list = []
 
-          # create an empty list to fill with all approvers
-          approver_list = []
+            # loop thru the changed models and approver list to get final approver list
+            for model in updated_models_list:
+                for approval_group in flattened_approval_group:
+                    if approval_group in model:
+                        approver_list.extend(flattened_approval_group[approval_group])
 
-          # loop thru the changed models and approver list to get final approver list
-          for model in changed_models_list:
-              for approval_group in flattened_approval_group:
-                  if approval_group in model:
-                      approver_list.extend(flattened_approval_group[approval_group])
+            # make sure approvers are unqiue
+            approver_list_unique = list(set(approver_list))
 
-          # make sure approvers are unqiue
-          approver_list_unique = list(set(approver_list))
+            # style in a format for the github action
+            approver_list_formated = (str(approver_list_unique)
+                                    .replace('[','')
+                                    .replace(']','')
+                                    .replace("'",""))
 
-          # style in a format for the github action
-          approver_list_formated = (str(approver_list_unique)
-                                  .replace('[','')
-                                  .replace(']','')
-                                  .replace("'",""))
-                                  
-          # setting the approver list output
-          set_output("approver_list", approver_list_formated)
-          print(1)
-          set_output("test", "testing")
-          set_output("testtwo", changed_models)
-          set_output("testthree", str(changed_models_list))
-          set_output("testfour", str(conf))
-          set_output("testfive", str(flattened_approval_group))
-          set_output("testsix", str(approver_list_unique))
-           
+            # setting the approver list output
+            set_output("approver_list", approver_list_formated)
+            
+          else:
+            # set the output of updated models to false
+            updated_models_flag = "FALSE"
+            
+          # set the output for is there updated models
+          set_output("updated_models_flag", updated_models_flag)
+          
           
           
      - name: Run script file
@@ -119,13 +136,8 @@ jobs:
           echo "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
           echo "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
           echo "${{ steps.get_needed_approvers.outputs.approver_list }}"
-          echo "test"
-          echo "${{ steps.get_needed_approvers.outputs.test }}"
-          echo "${{ steps.get_needed_approvers.outputs.testtwo }}"
-          echo "${{ steps.get_needed_approvers.outputs.testthree }}"
-          echo "${{ steps.get_needed_approvers.outputs.testfour }}"
-          echo "${{ steps.get_needed_approvers.outputs.testfive }}"
-          echo "${{ steps.get_needed_approvers.outputs.testsix }}"
+          echo "${{ steps.get_needed_approvers.outputs.updated_models_flag }}"
+
 
           
 # -------------------------------------------------------------------------------------------------------
