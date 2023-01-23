@@ -106,7 +106,9 @@ jobs:
           set_output("approver_list", approver_list_formated)
           print(1)
           set_output("test", "testing")
-          set_output("testtwo", "${{ steps.changed_files_in_models_folder.outputs.modified_files }}")
+          set_output("testtwo", changed_models)
+          set_output("testthree", str(changed_models_list))
+          set_output("testfour", str(conf))
            
           
           
@@ -119,6 +121,7 @@ jobs:
           echo "${{ steps.get_needed_approvers.outputs.test }}"
           echo "${{ steps.get_needed_approvers.outputs.testtwo }}"
           echo "${{ steps.get_needed_approvers.outputs.testthree }}"
+          echo "${{ steps.get_needed_approvers.outputs.testfour }}"
 
           
 # -------------------------------------------------------------------------------------------------------
