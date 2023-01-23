@@ -144,7 +144,7 @@ jobs:
 # if you want to set it up so additonal approvers are required on model changes this action will do so
 # -------------------------------------------------------------------------------------------------------
      - name: Require additonal approval if a model(s) was modified or deleted
-       if: steps.changed_files_in_models_folder.outputs.any_deleted == 'true' || steps.changed_files_in_models_folder.outputs.any_modified == 'true'
+       if: steps.get_needed_approvers.outputs.updated_models_flag == 'TRUE'
        uses: trstringer/manual-approval@v1
        with:
         secret: ${{ secrets.GITHUB_TOKEN }}
