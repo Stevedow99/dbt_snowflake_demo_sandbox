@@ -148,6 +148,6 @@ jobs:
        uses: trstringer/manual-approval@v1
        with:
         secret: ${{ secrets.GITHUB_TOKEN }}
-        approvers: "${{ steps.get_needed_approvers.outputs.updated_models_flag }}"
+        approvers: "${{ steps.get_needed_approvers.outputs.approver_list }}"
         minimum-approvals: 1
         issue-title: "A change to dbt models was made that could be a breaking change, please review as one of the models is relavant to your team"
