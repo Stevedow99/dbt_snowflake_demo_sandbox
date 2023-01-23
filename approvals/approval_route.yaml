@@ -3,9 +3,9 @@ approvals:
   finance_models:
     path: "models/finance/"
     approvers:
-      - Stevedow99
+      - stevedow11
 
   experimental_marketing_models:
     path: "models/marketing/experimental/"
     approvers:
-      - Stevedow99
+      - stevedow11
