@@ -18,7 +18,7 @@
 
 
 ### Video demo on using the macro
-[Demo Video]([https://www.loom.com/share/a3938814f6c448b7a903b42f2ab64bd3](https://www.loom.com/share/0d295d62da764c36a50ad2a5b0149da1))
+[Demo Video](https://www.loom.com/share/0d295d62da764c36a50ad2a5b0149da1)
     
 
 ### What does the macro do?:
