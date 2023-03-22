@@ -11,6 +11,12 @@
         - note: when you configure the macro in a post hook, the input parameter is `this` - `this` refers to the model that is running the macro. More info on the `this` command can be found [here](https://docs.getdbt.com/reference/dbt-jinja-functions/this).
 
 
+### Input Parameters
+- **model_name** _(required)_ –– should be set to `this`
+- **audit_table_schema** _(optional)_ –– the schema where the audit table will get created and populated with each run, by default it uses `audit`
+- **audit_table_schema** _(optional)_ –– the table name of the audit table, by default it uses `dbt_log_table`
+
+
 ### Video demo on using the macro
 [Demo Video](https://www.loom.com/share/a3938814f6c448b7a903b42f2ab64bd3)
     
@@ -21,6 +27,8 @@
     - Information logged in the `DBT_LOG_TABLE` in Snowflake:
         - dbt model name
         - dbt model snowflake location
+        - dbt resource type
+        - dbt resource path
         - Snowflake Query ID
         - Query Text (The command that was passed down in the query)
         - Database name
@@ -45,24 +53,27 @@
 - If i’m looking to log the model `monthly_gross_revenue` , I will need to add the `snowflake_query_logging` macro as a `post_hook` in my model config. My model file will look like this:
     
     ```yaml
-    {{
-        config(
-            materialized='table',
-            post_hook = [
-                "{{snowflake_query_logging(this)}}"
-            ]
-        )
-    }}
-    
-    select
-        date_trunc(month, order_date) as order_month,
-        sum(gross_item_sales_amount) as gross_revenue
-    
-    from {{ ref('fct_order_items') }}
-        group by 
-            order_month
-        order by 
-            order_month
+   {{
+    config(
+        materialized='table',
+        enabled= True,
+        post_hook = [
+            "{{snowflake_query_logging(this, audit_table_schema='audit_tables', audit_table_name = 'dbt_log_table')}}"
+        ]
+    )
+}}
+
+
+select
+    date_trunc(month, order_date) as order_month,
+    sum(gross_item_sales_amount) as gross_revenue
+
+from {{ ref('fct_order_items') }}
+    group by 
+        order_month
+    order by 
+        order_month
+
     ```
     
 - When I execute a `dbt run` or `dbt build` command that includes this model, information on the model will get logged to a table named `DBT_LOG_TABLE` in Snowflake. This table will live in the default database you are using, the schema it will use is your default schema for your environment + `_audit` .
