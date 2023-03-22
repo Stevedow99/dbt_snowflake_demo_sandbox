@@ -14,5 +14,5 @@
     value:value::string as contact_value,
     LOADED_AT_DATETIME
   FROM
-    STEVE_D_SANDBOX.dbtsandbox_sdowling.flatten_json_model,
+    {{ ref('flatten_json_model') }},
     LATERAL FLATTEN( INPUT => flatted_json_high_level:propertyManager:person:contactMethods )
