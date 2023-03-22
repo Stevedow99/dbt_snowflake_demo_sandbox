@@ -6,8 +6,8 @@
 {# ########################################################################## #}
 
 
-    {# if the resource was a snapshot we have to get the second to last query  #}
-    {% if model.resource_type == 'snapshot' %}
+    {# if the resource was a snapshot and is already created we have to get the second to last query  #}
+    {% if model.resource_type == 'snapshot' and adapter.get_relation(database, model.schema, model.name) != none %}
 
         {% call statement('last_query', fetch_result=True) -%}
             select last_query_id(-2) as last_query_id
