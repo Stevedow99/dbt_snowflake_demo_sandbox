@@ -8,6 +8,7 @@
       
       strategy='timestamp',
       updated_at='modified_timestamp',
+      post_hook="{{snowflake_query_logging(this)}}" 
     )
 }}
 
