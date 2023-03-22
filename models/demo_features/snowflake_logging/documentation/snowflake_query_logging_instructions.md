@@ -7,12 +7,12 @@
 1. Need to add the `snowflake_query_logging` macro into your `/macros` folder
     - This marco can be found [here on github](https://github.com/Stevedow99/dbt_snowflake_demo_sandbox/blob/main/macros/snowflake_utility_functions/logging/snowflake_logging.sql)
 2. Need to add the `snowflake_query_logging` macro as a post hook to the model you would like to log
-    - An example model with this post-hook can be found [here on github](https://github.com/Stevedow99/dbt_snowflake_demo_sandbox/blob/main/models/demo_features/snowflake_logging/snowflake_logging_example.sql)
-        - note: when you configure the macro in a post hook, the input parameter is `this` - `this` refers to the model that is running the macro. More info on the `this` command can be found [here](https://docs.getdbt.com/reference/dbt-jinja-functions/this).
+    - An example model with this post-hook can be found [here on github]
 
 
 ### Input Parameters
 - **model_name** _(required)_ –– should be set to `this`
+    - `this` refers to the model that is running the macro. More info on the `this` command can be found [here](https://docs.getdbt.com/reference/dbt-jinja-functions/this).
 - **audit_table_schema** _(optional)_ –– the schema where the audit table will get created and populated with each run, by default it uses `audit`
 - **audit_table_schema** _(optional)_ –– the table name of the audit table, by default it uses `dbt_log_table`
 
