@@ -18,7 +18,7 @@
 
 
 ### Video demo on using the macro
-[Demo Video](https://www.loom.com/share/a3938814f6c448b7a903b42f2ab64bd3)
+[Demo Video]([https://www.loom.com/share/a3938814f6c448b7a903b42f2ab64bd3](https://www.loom.com/share/0d295d62da764c36a50ad2a5b0149da1))
     
 
 ### What does the macro do?:
@@ -61,25 +61,20 @@
             "{{snowflake_query_logging(this, audit_table_schema='audit_tables', audit_table_name = 'dbt_log_table')}}"
         ]
     )
-}}
+    }}
 
 
-select
-    date_trunc(month, order_date) as order_month,
-    sum(gross_item_sales_amount) as gross_revenue
+    select
+        date_trunc(month, order_date) as order_month,
+        sum(gross_item_sales_amount) as gross_revenue
 
-from {{ ref('fct_order_items') }}
-    group by 
-        order_month
-    order by 
-        order_month
+    from {{ ref('fct_order_items') }}
+        group by 
+            order_month
+        order by 
+            order_month
 
     ```
     
-- When I execute a `dbt run` or `dbt build` command that includes this model, information on the model will get logged to a table named `DBT_LOG_TABLE` in Snowflake. This table will live in the default database you are using, the schema it will use is your default schema for your environment + `_audit` .
-    - For example if I am working with the following inputs
-        - Database on my dbt environment: `SANDBOX`
-        - Default schema on my dbt environment: `dbt_sdowling`
-    - The audit table would then get created in Snowflake here:
-        - `SANDBOX.DBT_SDOWLING_AUDIT.DBT_LOG_TABLE`
+- When I execute a `dbt run` or `dbt build` command that includes this model, information on the model will get logged to a table named `DBT_LOG_TABLE` in Snowflake (since this is the input i used for `audit_table_name`. This table will live in the default database you are using, the schema it will use is the one you define for `audit_table_schema` in this case `audit_tables`.
 - Each time the model gets run, a new record gets logged in Snowflake
