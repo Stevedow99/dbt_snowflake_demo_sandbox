@@ -24,7 +24,7 @@ CREATE OR REPLACE TEMPORARY STAGE sample_json_data_stage FILE_FORMAT = SAMPLE_JS
 ### Step Three - PUT file in Snowflake Stage
 ```sql
 
-PUT file://./moodys_json.json @sample_json_data_stage AUTO_COMPRESS=TRUE;
+PUT file://./sample_json.json @sample_json_data_stage AUTO_COMPRESS=TRUE;
 
 ```
 
