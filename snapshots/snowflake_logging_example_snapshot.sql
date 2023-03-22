@@ -8,12 +8,10 @@
       
       strategy='timestamp',
       updated_at='modified_timestamp',
-      post_hook="{{snowflake_query_logging(this)}}" 
+      post_hook="{{snowflake_query_logging(this, audit_table_schema='audit_tables', audit_table_name = 'dbt_log_table')}}" 
     )
 }}
 
 select * from {{ ref('example_orders_table') }}
 
 {% endsnapshot %}
-
-
