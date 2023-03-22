@@ -12,3 +12,5 @@ sources:
         columns:
           - name: raw_json_data
             description: the raw data varient column that was loaded
+          - name: loaded_at_datetime
+            description: the timestamp of when the raw JSON data was loaded
