@@ -57,21 +57,117 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
           
+     - name: Use python to generate the list of approvers
+       uses: jannekem/run-python-script-action@v1
+       id: get_needed_approvers
+       with:
+        fail-on-error: false
+        script: |
+          # import dependencies
+          import yaml
+          from pathlib import Path
+
+          # read in the yaml file
+          conf = yaml.safe_load(Path('approvals/approval_route.yaml').read_text())
+
+          # create a flatten approval group 
+          flattened_approval_group = {}
+
+          # loop thru to create the flatten group
+          for approval_groups in conf['approvals']:
+              flattened_approval_group[conf['approvals'][approval_groups]['path']] = conf['approvals'][approval_groups]['approvers']
+
+          # get the changed and deleted models
+          changed_models = "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
+          deleted_models = "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
           
-     - name: Run script file
+          # converting them to list if they are valid
+          changed_models_list = changed_models.split(" ") if len(changed_models) > 0 else None
+          deleted_models_list = deleted_models.split(" ") if len(deleted_models) > 0 else None
+          
+          # putting the listed together
+          if deleted_models_list != None and changed_models_list != None:
+              updated_models_list = deleted_models_list + changed_models_list
+          elif deleted_models_list != None and changed_models_list == None:
+              updated_models_list = deleted_models_list
+          elif deleted_models_list == None and changed_models_list != None:
+              updated_models_list = changed_models_list
+          else:
+              updated_models_list = None
+          
+          # if there are updated models we check for approvers
+          if updated_models_list != None:
+            
+            # setting a string version of the updated models to use as an output
+            updated_models_output = (str(updated_models_list)
+                                    .replace('[','')
+                                    .replace(']','')
+                                    .replace("'",""))
+                                    
+            # setting the output for updated models to make the approval request have more detail                        
+            set_output("updated_models_output", updated_models_output)
+          
+            # set the output of updated models to true
+            updated_models_flag = "TRUE"
+
+            # create an empty list to fill with all approvers
+            approver_list = []
+
+            # loop thru the changed models and approver list to get final approver list
+            for model in updated_models_list:
+                for approval_group in flattened_approval_group:
+                    if approval_group in model:
+                        approver_list.extend(flattened_approval_group[approval_group])
+
+            # make sure approvers are unqiue
+            approver_list_unique = list(set(approver_list))
+
+            # style in a format for the github action
+            approver_list_formated = (str(approver_list_unique)
+                                    .replace('[','')
+                                    .replace(']','')
+                                    .replace("'",""))
+
+            # setting the approver list output
+            set_output("approver_list", approver_list_formated)
+            
+          else:
+            # set the output of updated models to false
+            updated_models_flag = "FALSE"
+            
+          # set the output for is there updated models
+          set_output("updated_models_flag", updated_models_flag)
+          
+          
+          
+     - name: Run script file to test outputs - not needed - use for testing
        run: |
           echo "${{ steps.changed_files_in_models_folder.outputs.deleted_files }}"
           echo "${{ steps.changed_files_in_models_folder.outputs.modified_files }}"
+          echo "${{ steps.get_needed_approvers.outputs.approver_list }}"
+          echo "${{ steps.get_needed_approvers.outputs.updated_models_flag }}"
+          
+          
+     - name: Requested additon approvers
+       uses: madrapps/add-reviewers@v1
+       with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         reviewers: "${{ steps.get_needed_approvers.outputs.approver_list }}"
+         re-request-when-approved: true
+         re-request-when-changes-requested: true
+
+
 
           
-# -------------------------------------------------------------------------------------------------------
-# if you want to set it up so additonal approvers are required on model changes this action will do so
-# -------------------------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------------------------
+# # if you want to set it up so additonal approvers are required on model changes this action will do so
+# # -------------------------------------------------------------------------------------------------------
 #      - name: Require additonal approval if a model(s) was modified or deleted
-#        if: steps.changed_files_in_models_folder.outputs.any_deleted == 'true' || steps.changed_files_in_models_folder.outputs.any_modified == 'true'
+#        if: steps.get_needed_approvers.outputs.updated_models_flag == 'TRUE'
 #        uses: trstringer/manual-approval@v1
 #        with:
 #         secret: ${{ secrets.GITHUB_TOKEN }}
-#         approvers: approvers: user1,user2,org-team1
+#         approvers: "${{ steps.get_needed_approvers.outputs.approver_list }}"
 #         minimum-approvals: 1
-#         issue-title: "A change to dbt models was made that could be a breaking change, please review"
+#         issue-title: "A change to dbt models was made that could be a breaking change, please review as one of the models is relavant to your team"
+#         issue-body: "The following models were changed ${{ steps.get_needed_approvers.outputs.updated_models_output }}, at least one of these models fall under your approval"

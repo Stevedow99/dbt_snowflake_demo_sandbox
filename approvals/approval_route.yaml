@@ -1,11 +1,11 @@
 approvals:
 
   finance_models:
-    path: "/models/finance/*"
+    path: "models/finance/"
     approvers:
-      - Stevedow99
+      - stevedow11
 
-  marketing_models:
-    path: "/models/finance/*"
+  experimental_marketing_models:
+    path: "models/marketing/experimental/"
     approvers:
-      - Stevedow99
+      - stevedow11
