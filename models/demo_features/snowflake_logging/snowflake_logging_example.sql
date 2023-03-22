@@ -1,9 +1,9 @@
 {{
     config(
         materialized='table',
-        enabled= false,
+        enabled= True,
         post_hook = [
-            "{{snowflake_query_logging(this)}}"
+            "{{snowflake_query_logging(this, audit_table_schema='audit_tables', audit_table_name = 'dbt_log_table')}}"
         ]
     )
 }}
@@ -18,3 +18,4 @@ from {{ ref('fct_order_items') }}
         order_month
     order by 
         order_month
+
