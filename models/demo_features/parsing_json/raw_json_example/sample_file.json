@@ -1,0 +1,61 @@
+[
+    {
+      "_id": "1",
+        "propertyManager": {
+            "person": {
+                "name": "john madeup",
+                "contactMethods": [
+                    {
+                        "method": "PHONE",
+                        "value": "(000) 000-000"
+                    }
+                ],
+                "company": {
+                    "name": "BBB VIEW"
+                }
+            }
+        }
+    },
+    {
+        "_id": "2",
+          "propertyManager": {
+              "person": {
+                  "name": "another madeup",
+                  "contactMethods": [
+                      {
+                          "method": "PHONE",
+                          "value": "(111) 111-111"
+                      },
+                      {
+                        "method": "EMAIL",
+                        "value": "rge@sapte.com"
+                    }
+                  ],
+                  "company": {
+                      "name": "Apartment Management"
+                  }
+              }
+          }
+      },
+      {
+        "_id": "3",
+          "propertyManager": {
+              "person": {
+                  "name": "new manager",
+                  "contactMethods": [
+                      {
+                          "method": "PHONE",
+                          "value": "(222) 222-2222"
+                      },
+                      {
+                        "method": "EMAIL",
+                        "value": "rge@sapte.com"
+                    }
+                  ],
+                  "company": {
+                      "name": "another name"
+                  }
+              }
+          }
+      }
+]
