@@ -1,0 +1,14 @@
+version: 2
+
+
+sources:
+  - name: sample_json_data
+    description: Data that has been loaded into Snowflake in it's rawest form
+    database: steve_d_raw_data
+    schema: sample_json_data
+    tables:
+      - name: sample_json_rawest_form_table
+        description: A json file that has been loaded into snowflake into a table as a varient column
+        columns:
+          - name: raw_json_data
+            description: the raw data varient column that was loaded
