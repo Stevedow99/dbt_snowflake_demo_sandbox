@@ -46,11 +46,7 @@
                       {
                           "method": "PHONE",
                           "value": "(222) 222-2222"
-                      },
-                      {
-                        "method": "EMAIL",
-                        "value": "rge@sapte.com"
-                    }
+                      }
                   ],
                   "company": {
                       "name": "another name"
