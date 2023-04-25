@@ -51,8 +51,9 @@
 
             {# return the high watermark as a datetime stamp #}
             {{ "'" ~ high_watermark ~ "'" ~ '::DATETIME'}}
-            
+
         {%- endif -%}
 
     {%- endif -%}
+    
 {%- endmacro -%}
