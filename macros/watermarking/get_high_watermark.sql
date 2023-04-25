@@ -10,7 +10,7 @@
         {%- set model_info = {'model_database': none, 'model_schema': none, model_identifier: none} -%}
 
         {# ----------------------------------------------------------------------------------------------- #}
-        {# loop thru the graph nodes and grab our model #}
+        {# loop into the graph nodes and grab our model #}
         {# ----------------------------------------------------------------------------------------------- #}
         {%- for node in graph.nodes.values()      
             | selectattr("resource_type", "equalto", "model")
@@ -55,5 +55,5 @@
         {%- endif -%}
 
     {%- endif -%}
-    
+
 {%- endmacro -%}
