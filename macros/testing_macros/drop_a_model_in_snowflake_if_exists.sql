@@ -44,6 +44,11 @@
             {# log that the model exists #}
             {{ log("Model was found, it's relation is: " ~ model_info.model_database ~ "." ~ model_info.model_schema ~ "." ~ model_info.model_identifier ~ " and its of type " ~ model_info.model_materialization, info=True) }}
 
+            {%- if model_info.model_materialization == "incremental" -%}
+                {%- do model_info.update({'model_materialization': 'table'}) -%}
+            {%- endif -%}
+
+
             {# create the query that we send down to the data warehouse #}
             {%- set sql_query -%}
                 DROP {{ model_info.model_materialization }}
