@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: sample_data
+    database: STEVE_D_SANDBOX
+    schema: dbtsandbox_sdowling
+    tables:
+      - name: example_orders_table
+        columns:
+          - name: ID
+            description: Unique identifier for each order
+            tests:
+              - not_null
+              - unique
+          - name: STATUS
+            description: Current status of the order
+            tests:
+              - not_null
+          - name: CREATED_TIMESTAMP
+            description: Timestamp when the order was created
+            tests:
+              - not_null
+          - name: MODIFIED_TIMESTAMP
+            description: Timestamp when the order was last modified
+            tests:
+              - not_null
