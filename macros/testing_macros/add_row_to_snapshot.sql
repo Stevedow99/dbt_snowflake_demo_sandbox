@@ -10,15 +10,21 @@
 
   {%- set does_table_exists = run_query(table_exists_query).columns[0].values()[0] -%}
 
-  {% if does_table_exists == 0 %}
+    {% if does_table_exists == 0 %}
 
-    CREATE TABLE {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} as (
-    select
-        uniform(1, 100000, random()) as id,
-        'pending' as status,
-        current_timestamp() as created_timestamp,
-        current_timestamp() as modified_timestamp
-        )
+        {% set ct_query %}
+
+        CREATE TABLE {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} as (
+        select
+            uniform(1, 100000, random()) as id,
+            'pending' as status,
+            current_timestamp() as created_timestamp,
+            current_timestamp() as modified_timestamp
+            )
+        {% endset %}
+
+        {% do run_query(ct_query) %}
+
 
     {% else %}
 
