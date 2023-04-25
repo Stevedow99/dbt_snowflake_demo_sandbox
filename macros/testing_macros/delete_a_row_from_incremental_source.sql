@@ -4,11 +4,10 @@
     {% set query %}
         DELETE FROM  {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} 
         WHERE 
-        select id = (SELECT id from {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} order by created_timestamp limit 1)
+         id = (SELECT id from {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} order by created_timestamp limit 1)
     {% endset %}
 
-        {% do run_query(query) %}
+    {% do run_query(query) %}
 
-    {% endif %}
 
 {%- endmacro %}

@@ -24,11 +24,7 @@ sources:
             description: Timestamp when the order was last modified
             tests:
               - not_null
-
-  - name: sample_data
-    database: STEVE_D_SANDBOX
-    schema: dbtsandbox_sdowling
-    tables:
+              
       - name: example_orders_table_two
         columns:
           - name: ID
