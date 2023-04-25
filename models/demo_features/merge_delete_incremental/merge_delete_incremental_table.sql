@@ -1,6 +1,13 @@
+{{
+    config(
+        materialized='incremental_custom',
+        incremental_strategy='merge',
+        on_schema_change='sync_all_columns',
+        delete_target_not_in_source=True,
+        unique_key='id'
+    )
+}}
 
 
-
-Select 
-*
-FROM {{ source('sample_data', 'example_orders_table_two') }}
+select * 
+from {{ source('sample_data', 'example_orders_table_two') }}
