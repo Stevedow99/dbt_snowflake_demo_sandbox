@@ -24,3 +24,24 @@ sources:
             description: Timestamp when the order was last modified
             tests:
               - not_null
+              
+      - name: example_orders_table_two
+        columns:
+          - name: ID
+            description: Unique identifier for each order
+            tests:
+              - not_null
+              - unique
+          - name: STATUS
+            description: Current status of the order
+            tests:
+              - not_null
+          - name: CREATED_TIMESTAMP
+            description: Timestamp when the order was created
+            tests:
+              - not_null
+          - name: MODIFIED_TIMESTAMP
+            description: Timestamp when the order was last modified
+            tests:
+              - not_null
+    

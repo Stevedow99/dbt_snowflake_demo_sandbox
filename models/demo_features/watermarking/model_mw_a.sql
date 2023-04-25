@@ -1,6 +1,9 @@
+{% set query_tag_text = model_name ~ " | " ~ model.path  ~ " | " ~ invocation_id %}
+
 {{
     config(
-        materialized='table'
+        materialized='table',
+        query_tag = query_tag_text
     )
 }}
 
