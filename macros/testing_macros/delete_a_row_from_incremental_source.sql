@@ -1,4 +1,4 @@
-{% macro add_row_to_example_orders_table(orders_table_name='example_orders_table') -%}
+{% macro delete_row_to_example_orders_table(orders_table_name='example_orders_table') -%}
 
   {% set table_exists_query %}
 
@@ -12,13 +12,18 @@
 
   {% if does_table_exists == 0 %}
 
-    CREATE TABLE {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} as (
-    select
-        uniform(1, 100000, random()) as id,
-        'pending' as status,
-        current_timestamp() as created_timestamp,
-        current_timestamp() as modified_timestamp
-        )
+        {% set ct_query %}
+
+        CREATE TABLE {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} as (
+        select
+            uniform(1, 100000, random()) as id,
+            'pending' as status,
+            current_timestamp() as created_timestamp,
+            current_timestamp() as modified_timestamp
+            )
+        {% endset %}
+
+        {% do run_query(ct_query) %}
 
     {% else %}
 
