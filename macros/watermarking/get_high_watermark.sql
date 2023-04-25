@@ -7,7 +7,7 @@
     {%- if execute and flags.WHICH in ['run', 'build', 'rpc']-%}
 
         {# create a dict with all needed model info #}
-        {%- set model_info = {'model_database': none, 'model_schema': none, model_identifier: none} -%}
+        {%- set model_info = {'model_database': none, 'model_schema': none, 'model_identifier': none} -%}
 
         {# ----------------------------------------------------------------------------------------------- #}
         {# loop into the graph nodes and grab our model #}
@@ -32,12 +32,15 @@
             {{ log("Model not found: " ~ model_name, info=True) }}
 
             {# set the output to  1900-01-01 in datetime stamp #}
-            {{'1900-01-01::DATETIME'}}
+            {{"'1900-01-01'::DATETIME"}}
 
         {# ----------------------------------------------------------------------------------------------- #}
         {# if model does exist we query it for the max timestamp #}
         {# ----------------------------------------------------------------------------------------------- #}
         {%- else -%}
+
+            {# log that the model exists #}
+            {{ log("Model was found, it's relation is: " ~ model_info.model_database ~ "." ~ model_info.model_schema ~ "." ~ model_info.model_identifier, info=True) }}
 
             {# create the query that we send down to the data warehouse #}
             {%- set sql_query -%}
