@@ -1,4 +1,4 @@
-{% macro add_row_to_snapshot() -%}
+{% macro add_row_to_example_orders_table() -%}
 
   {% set query %}
     INSERT INTO  STEVE_D_SANDBOX.dbtsandbox_sdowling.example_orders_table (
