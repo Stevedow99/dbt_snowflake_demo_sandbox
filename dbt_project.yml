@@ -65,7 +65,7 @@ models:
       +enabled: true
 
     metrics:
-      +enabled: true
+      +enabled: false
 
     marts:
       core:
