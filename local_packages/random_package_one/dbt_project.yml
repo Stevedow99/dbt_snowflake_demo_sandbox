@@ -2,12 +2,12 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'dbt_snowflake_demo_sandbox'
+name: 'random_package_one'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'dbt_snowflake_demo_sandbox'
+profile: 'random_package_one'
 
 
 # These configurations specify where dbt should look for different types of files.
@@ -53,9 +53,6 @@ vars:
 # my models folder
 models:
 
-  elementary:
-    +schema: elementary
-
   # setting my project name here
-  dbt_snowflake_demo_sandbox:
+  random_package_one:
 
