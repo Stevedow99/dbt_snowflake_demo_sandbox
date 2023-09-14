@@ -1,4 +1,4 @@
 {{ config(
-    enabled=false
+    enabled=true
 ) }}
 select 1 as one
