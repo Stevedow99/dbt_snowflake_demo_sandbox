@@ -54,9 +54,16 @@ vars:
 models:
 
   elementary:
+    +tags: elementary_assets
     +database: fl_audit_test
     +schema: elementary
+    edr:
+      dbt_artifacts:
+        dbt_models:
+          enabled: false
+
 
   # setting my project name here
   dbt_snowflake_demo_sandbox:
+
 

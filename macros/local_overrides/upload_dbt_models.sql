@@ -2,7 +2,12 @@
     {% set relation = elementary.get_elementary_relation('dbt_models') %}
     {% if execute and relation %}
         {% set models = graph.nodes.values() | selectattr('resource_type', '==', 'model') %}
-        {% do elementary.upload_artifacts_to_table(relation, models, elementary.flatten_model, append=True, should_commit=should_commit, metadata_hashes=metadata_hashes) %}
+        {% do elementary.upload_artifacts_to_table(relation, models, elementary.flatten_model, append=true, should_commit=should_commit, metadata_hashes=metadata_hashes) %}
+        
+        {{ log("======================================================================") }}
+        {{ log("=== running the local version of upload models.         ==============") }}
+        {{ log("======================================================================") }}
+
     {%- endif -%}
     {{- return('') -}}
 {%- endmacro -%}
