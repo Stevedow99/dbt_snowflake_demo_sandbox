@@ -64,5 +64,5 @@ models:
 
 
 dispatch:
-  - macro_namespace: dbt_utils
+  - macro_namespace: elementary
     search_order: ['dbt_snowflake_demo_sandbox', 'elementary']
