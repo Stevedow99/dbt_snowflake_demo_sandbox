@@ -54,6 +54,7 @@ vars:
 models:
 
   elementary:
+    +database: fl_audit_test
     +schema: elementary
 
   # setting my project name here
