@@ -31,7 +31,7 @@ with orders_pks as (
 
         {% if is_incremental() %}
 
-            where modified_timestamp > (select max(orders_modified_timestamp) from {{ this }})
+            where modified_timestamp > (select ifnull(max(orders_modified_timestamp), to_date('1800-01-01')) from {{ this }})
 
         {% endif %}
 
@@ -61,7 +61,7 @@ customers_pks as (
 
         {% if is_incremental() %}
 
-            where modified_timestamp > (select max(customers_modified_timestamp) from {{ this }})
+            where modified_timestamp > (select ifnull(max(customers_modified_timestamp), to_date('1800-01-01')) from {{ this }})
 
         {% endif %}
 
@@ -90,7 +90,7 @@ product_pks as (
 
         {% if is_incremental() %}
 
-            where modified_timestamp > (select max(product_modified_timestamp) from {{ this }})
+            where modified_timestamp > (select ifnull(max(product_modified_timestamp), to_date('1800-01-01')) from {{ this }})
 
         {% endif %}
 
