@@ -6,7 +6,7 @@
         SELECT
             count(*)
         FROM TABLE(INFORMATION_SCHEMA.QUERY_HISTORY())
-        where EXECUTION_STATUS = 'RUNNING' and QUERY_TYPE <> 'UNKNOWN' and QUERY_TAG ='{{query_tag_to_check}}'
+        where EXECUTION_STATUS = 'RUNNING' and query_text not like 'CALL SYSTEM$WAIT%' and QUERY_TAG ='{{query_tag_to_check}}'
 
     {%- endset -%}
 
