@@ -3,10 +3,13 @@
 
     {%- set get_running_queries_with_tag -%}
 
-        SELECT
-            count(*)
+        SELECT 'MARCO QUERY' as type,
+            count(*) as processes_running
         FROM TABLE(INFORMATION_SCHEMA.QUERY_HISTORY())
-        where EXECUTION_STATUS = 'RUNNING' and query_text not like 'CALL SYSTEM$WAIT%' and QUERY_TAG ='{{query_tag_to_check}}'
+        where EXECUTION_STATUS = 'RUNNING' 
+              and query_text not like 'CALL SYSTEM$WAIT%' 
+              and query_text not like '%MARCO QUERY%' 
+              and QUERY_TAG ='{{query_tag_to_check}}'
 
     {%- endset -%}
 
@@ -19,7 +22,7 @@
 
             {%- set number_of_queries_running = results.columns[0].values() -%}
             
-            {%- if number_of_queries_running[0] > 0 -%}
+            {%- if number_of_queries_running[1] > 0 -%}
 
                 {{ log("There is currently processes running with the query tag " ~ query_tag_to_check) }}
                 {{ log("waiting " ~ polling_period_in_seconds ~ " seconds and then checking again "  ) }}
