@@ -10,8 +10,7 @@
 -- just some dummy code to help me test the solution
 with table_wait as (
 
-    -- select SYSTEM$WAIT({{var('testing_wait_seconds')}}) as wait_time 
-    select SYSTEM$WAIT(15) as wait_time 
+    select SYSTEM$WAIT({{var('testing_wait_seconds')}}) as wait_time
     
 ) 
 
