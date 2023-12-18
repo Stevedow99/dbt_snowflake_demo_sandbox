@@ -23,7 +23,7 @@
 
                 {{ log("There is currently processes running with the query tag " ~ query_tag_to_check) }}
                 {{ log("waiting " ~ polling_period_in_seconds ~ " seconds and then checking again "  ) }}
-                {{ log("There are " ~ running_example_model ~ " processes running")}}
+                {{ log("There are " ~ number_of_queries_running ~ " processes running")}}
                 
                 {%- do run_query( 'CALL SYSTEM$WAIT(' ~ polling_period_in_seconds ~ ')') -%}
                 
