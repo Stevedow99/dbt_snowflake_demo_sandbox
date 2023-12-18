@@ -5,6 +5,8 @@
 name: 'dbt_snowflake_demo_sandbox'
 version: '1.0.0'
 config-version: 2
+dbt-cloud: 
+    project-id: 147601
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'dbt_snowflake_demo_sandbox'
@@ -42,8 +44,9 @@ vars:
   start_date: '1999-01-01'
   test: 'false' # to trigger runs for unit testing - override in a CLI param in testing job
   fct_order_items: 'mock_source__fct_order_items' # this is a map for unit testing
-  vars:
   'dbt_date:time_zone': 'America/Los_Angeles'
+  dbt_cloud_job_name: manual
+  testing_wait_seconds: 2
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
