@@ -20,9 +20,9 @@
 
             {%- set results = run_query(get_running_queries_with_tag) -%}
 
-            {%- set number_of_queries_running = results.columns[0].values() -%}
+            {%- set number_of_queries_running = results.columns[1].values() -%}
             
-            {%- if number_of_queries_running[1] > 0 -%}
+            {%- if number_of_queries_running[0] > 0 -%}
 
                 {{ log("There is currently processes running with the query tag " ~ query_tag_to_check) }}
                 {{ log("waiting " ~ polling_period_in_seconds ~ " seconds and then checking again "  ) }}
