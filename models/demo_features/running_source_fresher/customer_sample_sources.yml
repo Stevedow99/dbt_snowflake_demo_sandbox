@@ -6,6 +6,9 @@ sources:
     schema: dbtsandbox_sdowling
     tables:
       - name: example_orders_table
+        freshness: # make this a warning as this is static data
+          warn_after: {count: 6, period: hour}
+        loaded_at_field: MODIFIED_TIMESTAMP
         columns:
           - name: ID
             description: Unique identifier for each order
@@ -26,6 +29,9 @@ sources:
               - not_null
               
       - name: example_orders_table_two
+        freshness: # make this a warning as this is static data
+          warn_after: {count: 6, period: hour}
+        loaded_at_field: MODIFIED_TIMESTAMP
         columns:
           - name: ID
             description: Unique identifier for each order
