@@ -1,7 +1,8 @@
 {{
     config(
         materialized='incremental',
-        unique_key='id'
+        unique_key='id',
+        query_tag = 'running_example_model'
     )
 }}
 
