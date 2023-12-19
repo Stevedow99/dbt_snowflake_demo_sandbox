@@ -1,9 +1,9 @@
-{% macro add_row_to_example_orders_table(orders_table_name='example_orders_table') -%}
+{% macro add_row_to_example_orders_table(orders_table_name='example_orders_table', default_schema_name='dbtsandbox_sdowling') -%}
 
   {% set table_exists_query %}
 
     Select count(*) as table_existis from (
-    Select * from {{target.database}}.INFORMATION_SCHEMA.TABLES where lower(table_name) = '{{orders_table_name}}')
+    Select * from {{target.database}}.INFORMATION_SCHEMA.TABLES where lower(table_name) = '{{orders_table_name}}' and lower(TABLE_SCHEMA) = '{{default_schema_name}}')
 
   {% endset %}
 
@@ -14,7 +14,7 @@
 
         {% set ct_query %}
 
-        CREATE TABLE {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} as (
+        CREATE TABLE {{target.database}}.{{default_schema_name}}.{{orders_table_name}} as (
         select
             uniform(1, 100000, random()) as id,
             'pending' as status,
@@ -29,7 +29,7 @@
     {% else %}
 
         {% set query %}
-        INSERT INTO  {{target.database}}.dbtsandbox_sdowling.{{orders_table_name}} (
+        INSERT INTO  {{target.database}}.{{default_schema_name}}.{{orders_table_name}} (
         select
             uniform(1, 100000, random()) as id,
             'pending' as status,
