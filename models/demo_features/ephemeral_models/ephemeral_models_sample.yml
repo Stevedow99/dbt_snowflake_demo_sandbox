@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: a_sample_ephemeral_model_one
+    columns:
+    - name: a_sample_column
+      tests:
+        - not_null
+            
