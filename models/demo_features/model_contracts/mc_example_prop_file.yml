@@ -1,0 +1,22 @@
+models:
+  - name: downstream__inc__model
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: id
+        data_type: varchar(1)
+        constraints:
+          - type: not_null
+      - name: one
+        data_type: number(1,0)
+        constraints:
+          - type: not_null
+      - name: varchar_column
+        data_type: varchar(3)
+        constraints:
+          - type: not_null
+      - name: modified_datetime
+        data_type: timestamp_ltz(9)
+        constraints:
+          - type: not_null

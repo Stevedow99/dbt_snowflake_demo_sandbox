@@ -1,9 +1,12 @@
 {{
     config(
         materialized='incremental',
-        unique_key='id'
+        unique_key='id',
+        on_schema_change='append_new_columns'
     )
 }}
+
+select
 
     id,
     one,
@@ -18,3 +21,5 @@ from {{ ref('upstream_model_one') }}
   where modified_datetime > (select max(modified_datetime) from {{ this }})
 
 {% endif %}
+
+
