@@ -1,0 +1,6 @@
+packages:
+- package: dbt-labs/dbt_utils
+  version: 1.1.1
+- git: https://github.com/AxelThevenot/dbt-assertions.git
+  revision: e98c03ff8646a9154cb9c32bc13528f096dcf168
+sha1_hash: 74baab3f6aae578fead4c66a8badd601b4e53bb7
