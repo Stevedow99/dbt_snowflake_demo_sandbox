@@ -16,4 +16,3 @@ Select
     *,
     {{ dbt_assertions.assertions() | indent(4) }}
 from mfa
-WHERE {{ dbt_assertions.assertions_filter() }}
