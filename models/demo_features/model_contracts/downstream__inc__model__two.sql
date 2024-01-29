@@ -13,7 +13,7 @@ select
     varchar_column,
     modified_datetime
 
-from {{ ref('upstream_model_one') }}
+from {{ ref('upstream_model_two') }}
 
 {% if is_incremental() %}
 
