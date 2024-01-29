@@ -18,5 +18,5 @@ UNION ALL
 
 Select 
     'wooHoo' as my_frist_column,
-    10/1 as a_simple_calculation,
+    3/1 as a_simple_calculation,
     current_timestamp() as current_time
