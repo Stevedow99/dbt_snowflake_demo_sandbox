@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dbta_downstream_model_one
+    columns:
+      - name: my_frist_column
+      - name: a_simple_calculation
+      - name: current_time
+      - name: exceptions
+        assertions:
+          my_frist_column_is_not_null:
+            description: 'my_frist_column is not null.'
+            expression: my_frist_column IS NOT NULL
+          a_simple_calculation_greater_than_five:
+            description: 'a_simple_calculation is greater than 5'
+            expression: a_simple_calculation > 5
+
+  - name: dbta_downstream_model_two
+    columns:
+      - name: my_frist_column
+      - name: a_simple_calculation
+      - name: current_time
+      - name: exceptions
+        assertions:
+          my_frist_column_is_not_null:
+            description: 'my_frist_column is not null.'
+            expression: my_frist_column IS NOT NULL
+          a_simple_calculation_greater_than_five:
+            description: 'a_simple_calculation is greater than 5'
+            expression: a_simple_calculation > 5
