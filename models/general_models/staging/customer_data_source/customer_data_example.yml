@@ -1,0 +1,17 @@
+models:
+
+  # define the model name
+  - name: stg_purchases_fct
+
+    # defining this models configurations
+    config:
+
+      # be enforcing a contract we enfore the models column names, data types, and additional constraints (think not null)
+      contract:
+          enforced: false
+
+      # we tag this model to certain teams
+      tags: ['finance', 'RevOps']
+
+    # define the access type public == can be used outside current project, private == only within the bounds of this project
+    access: public

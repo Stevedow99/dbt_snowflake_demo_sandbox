@@ -1,0 +1,33 @@
+version: 2
+
+
+sources:
+  - name: customer_data_source
+    description: Sample customer data used for demos
+    database: steve_d_raw_data
+    schema: SAMPLE_CUSTOMER_DATA
+    tags: 
+      - "customer_data_source"
+    tables:
+      - name: customer_dim
+        description: a dim table full of customer information
+        freshness:
+          warn_after: {count: 90, period: day}
+        loaded_at_field: created_timestamp
+      - name: purchases_fct
+        description: fact table for transactions of vehicle purchases from the company
+        freshness:
+          warn_after: {count: 700, period: day}
+        loaded_at_field: created_timestamp
+
+      - name: product_dim
+        description: a dim table full of product information
+        freshness:
+          warn_after: {count: 700, period: day}
+        loaded_at_field: created_timestamp
+
+      - name: salesteam_dim
+        description: a dim table full of information about the sales team
+        freshness:
+          warn_after: {count: 700, period: day}
+        loaded_at_field: created_timestamp
