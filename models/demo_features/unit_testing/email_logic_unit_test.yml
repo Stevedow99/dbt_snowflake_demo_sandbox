@@ -21,5 +21,12 @@ unit_tests:
         - {customer_id: 4, is_valid_email_address: false}
 
 
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+
+# to run this unit test paste the following in the command bar
 
 # dbt test --select "dim_customers_ut,test_type:unit"
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
