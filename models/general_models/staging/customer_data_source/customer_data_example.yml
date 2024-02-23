@@ -13,8 +13,5 @@ models:
       # we tag this model to certain teams
       tags: ['finance', 'RevOps']
 
-    # define the group if belongs to
-    group: revops
-
     # define the access type public == can be used outside current project, private == only within the bounds of this project
     access: public
