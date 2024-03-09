@@ -2,6 +2,16 @@
   {{ return(run_started_at.strftime('%Y_%m_%d%H_%M_%S')) }}
 {% endmacro %}
 
+{% macro is_incremental_custom_check() %}
+    {#-- do not run introspective queries in parsing #}
+    {% if not execute %}
+        {{ return(False) }}
+    {% else %}
+        {% set relation = adapter.get_relation(this.database, this.schema, this.table) %}
+        {{ return(relation is not none and relation.type == 'table' and not flags.FULL_REFRESH) }}
+    {% endif %}
+{% endmacro %}
+
 {% macro dbt_snowflake_validate_get_incremental_strategy(config) %}
   {#-- Find and validate the incremental strategy #}
   {%- set strategy = config.get("incremental_strategy", default="merge") -%}
