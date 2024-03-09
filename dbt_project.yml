@@ -47,6 +47,8 @@ vars:
   'dbt_date:time_zone': 'America/Los_Angeles'
   dbt_cloud_job_name: manual
   testing_wait_seconds: 2
+  ibp_start_date: '1999-01-01'
+  ibp_end_date: '2023-12-01'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
