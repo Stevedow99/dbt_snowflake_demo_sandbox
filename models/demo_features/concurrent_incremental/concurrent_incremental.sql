@@ -12,7 +12,7 @@ select *
 from {{ source('sample_data', 'example_orders_table_two') }}
 
 
-{% if is_incremental() %}
+{% if is_incremental_custom_check() %}
 
   where modified_timestamp > (select max(modified_timestamp) from {{ this }})
 
