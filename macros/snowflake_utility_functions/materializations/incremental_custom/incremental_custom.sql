@@ -1,3 +1,7 @@
+{% macro get_formatted_run_started_timestamp() %}
+  {{ return(run_started_at.strftime('%Y_%m_%d%H_%M_%S')) }}
+{% endmacro %}
+
 {% macro dbt_snowflake_validate_get_incremental_strategy(config) %}
   {#-- Find and validate the incremental strategy #}
   {%- set strategy = config.get("incremental_strategy", default="merge") -%}
@@ -54,7 +58,13 @@
 
   {% set target_relation = this %}
   {% set existing_relation = load_relation(this) %}
-  {% set tmp_relation = make_temp_relation(this) %}
+  {% set tmp_relation = make_temp_relation(this, get_formatted_run_started_timestamp()) %}
+  {{ log("====================================") }}
+  {{ log("====================================") }}
+  {{ log(tmp_relation) }}
+  {{ log("====================================") }}
+  {{ log("====================================") }}
+  {{ log("====================================") }}
 
   {#-- Validate early so we don't run SQL if the strategy is invalid --#}
   {% set strategy = dbt_snowflake_validate_get_incremental_strategy(config) -%}
