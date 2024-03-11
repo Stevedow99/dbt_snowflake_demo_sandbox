@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: staging_model_base
+    description: "A summary model of school data including student numbers, data entry confidence, achievement rating, and more."
+
+    columns:
+      - name: record_id
+        description: "The unique identifier for the school district."
+        tests:
+          - not_null
+          - unique
+
+      - name: district_id
+        description: "The unique identifier for the school district."
+        tests:
+          - not_null
+
+      - name: district_name
+        description: "The name of the school district."
+        tests:
+          - not_null
+
+      - name: school_name
+        description: "The name of the individual school."
+        tests:
+          - not_null
+
+      - name: number_of_students
+        description: "The total number of students in the school."
+        tests:
+          - not_null
+
+      - name: data_entry_confidence
+        description: "A measure of confidence in the data entry process."
+        tests:
+          - not_null
+          
+
+      - name: school_achievement_rating
+        description: "A rating of the school's overall achievement."
+        tests:
+          - not_null
+          
+
+      - name: file_name
+        description: "The name of the file containing the school's data."
+        tests:
+          - not_null
+
+      - name: dbt_ready
+        description: "Indicates whether the data is ready to be processed by dbt."
+        tests:
+          - not_null
+
+      - name: file_processed
+        description: "Indicates whether the file has been processed."
+        tests:
+          - not_null
+
+      - name: created_timestamp
+        description: "The timestamp when the record was created."
+        tests:
+          - not_null
+
+      - name: modifed_timestamp
+        description: "The timestamp when the record was last modified. Note: Correcting 'modifed' to 'modified' would match standard naming conventions."
+        tests:
+          - not_null
+
+      - name: failed_validations
+        assertions:
+          number_of_student_above_1000:
+            description: 'ensures the number of students in a school is greater than 1000'
+            expression: number_of_students > 1000
+          data_entry_confidence_greater_than_fifty_percent:
+            description: 'ensures the score of confidence for data entry exceeds 50 percent'
+            expression: data_entry_confidence > 50
+          school_achievement_rating_above_above_two:
+            description: 'ensures the score school_achievement_rating is above 2'
+            expression: school_achievement_rating > 2
+

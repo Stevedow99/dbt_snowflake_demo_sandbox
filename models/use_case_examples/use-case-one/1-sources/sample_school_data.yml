@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: school_data
+    database: STEVE_D_RAW_DATA
+    schema: SAMPLE_SCHOOL_DATA
+    tables:
+      - name: school_districts
+        description: "Table containing information about school districts."
