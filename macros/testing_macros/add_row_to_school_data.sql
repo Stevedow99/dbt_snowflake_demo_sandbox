@@ -3,7 +3,7 @@
 
 
     {% set query %}
-        INSERT INTO STEVE_D_RAW_DATA.SAMPLE_SCHOOL_DATA.school_districts (District_ID, District_Name, School_Name, number_of_students, data_entry_confidence, school_achievement_rating, file_name, dbt_ready, file_processed, created_timestamp, modifed_timestamp)
+        INSERT INTO STEVE_D_RAW_DATA.SAMPLE_SCHOOL_DATA.school_districts (District_ID, District_Name, School_Name, file_name,  number_of_students, data_entry_confidence, school_achievement_rating, dbt_ready, file_processed, created_timestamp, modifed_timestamp)
 
         with random_numer as 
 
