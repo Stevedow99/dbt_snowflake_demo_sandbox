@@ -1,9 +1,4 @@
 packages:
-- package: dbt-labs/dbt_utils
-  version: 1.1.1
-- git: https://github.com/AxelThevenot/dbt-assertions.git
-  revision: 74ed79ad80df9b805e75bced3e8a02eebec7f319
-- git: https://github.com/dbt-labs/dbt-labs-experimental-features
-  revision: d6fe2b9ddc4e2367f10a8126210c12ccf79f5d3d
-  subdirectory: insert_by_period
-sha1_hash: a4d0f3924d0ec7355a59723d17ad7b20c9577c59
+- package: AxelThevenot/dbt_assertions
+  version: 1.2.0
+sha1_hash: 676215c590b75869d3417c8d2c48731fa9ba6114

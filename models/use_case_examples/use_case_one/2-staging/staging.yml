@@ -1,25 +1,67 @@
 version: 2
 
 models:
-  - name: your_model_name  # Replace with your actual model name
-    description: "A model summarizing school data including number of students, data entry confidence, and school achievement rating."
+  - name: staging_model_two
+    description: "A summary model of school data including student numbers, data entry confidence, achievement rating, and more."
     columns:
-      - name: number_of_students
-        description: "The total number of students across schools."
+      - name: record_id
+        description: "The unique identifier for the school district."
         tests:
           - not_null
           - unique
 
-      - name: data_entry_confidence
-        description: "A measure of confidence in the data entry process, potentially as a percentage."
+      - name: district_id
+        description: "The unique identifier for the school district."
         tests:
           - not_null
-          - accepted_values:
-              values: ['High', 'Medium', 'Low']  # Assuming these are the potential values; adjust as necessary
+
+      - name: district_name
+        description: "The name of the school district."
+        tests:
+          - not_null
+
+      - name: school_name
+        description: "The name of the individual school."
+        tests:
+          - not_null
+
+      - name: number_of_students
+        description: "The total number of students in the school."
+        tests:
+          - not_null
+
+      - name: data_entry_confidence
+        description: "A measure of confidence in the data entry process."
+        tests:
+          - not_null
 
       - name: school_achievement_rating
-        description: "A rating of the school's overall achievement, possibly categorized by performance."
+        description: "A rating of the school's overall achievement."
         tests:
           - not_null
-          - accepted_values:
-              values: ['Excellent', 'Good', 'Average', 'Below Average', 'Poor']  # Adjust based on your rating system
+
+      - name: file_name
+        description: "The name of the file containing the school's data."
+        tests:
+          - not_null
+
+      - name: dbt_ready
+        description: "Indicates whether the data is ready to be processed by dbt."
+        tests:
+          - not_null
+
+      - name: file_processed
+        description: "Indicates whether the file has been processed."
+        tests:
+          - not_null
+
+      - name: created_timestamp
+        description: "The timestamp when the record was created."
+        tests:
+          - not_null
+
+      - name: modifed_timestamp
+        description: "The timestamp when the record was last modified. Note: Correcting 'modifed' to 'modified' would match standard naming conventions."
+        tests:
+          - not_null
+
