@@ -31,8 +31,16 @@ base_model_with_assertions as (
         *,
         {{ dbt_assertions.assertions() | indent(4) }}
     from base_model
+),
+
+output_table as (
+    select
+        *,
+        array_size(failed_validations) as number_of_failed_validations
+    from base_model_with_assertions
 )
+
 
 select
 *
-from base_model_with_assertions
+from output_table
