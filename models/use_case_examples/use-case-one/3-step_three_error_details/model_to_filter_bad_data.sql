@@ -7,21 +7,9 @@
     )
 }}
 
-with base as (
+
 select * 
 from {{ ref('staging_model_base') }}
 
 -- filtering for rows that failed validation
-WHERE {{ dbt_assertions.assertions_filter(reverse=True) }} )
-
-
-select 
-*
-from base
-
-
-{% if is_incremental_custom_check() %}
-
-  where modified_timestamp > (select max(modified_timestamp) from {{ this }})
-
-{% endif %}
+WHERE {{ dbt_assertions.assertions_filter(reverse=True) }}
