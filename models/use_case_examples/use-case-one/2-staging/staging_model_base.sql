@@ -18,7 +18,7 @@ select
     dbt_ready,
     file_processed,
     created_timestamp,
-    modifed_timestamp
+    modified_timestamp
 
 from {{ source('school_data', 'school_districts') }}
 where 
@@ -38,8 +38,8 @@ output_table as (
         *,
         array_size(failed_validations) as number_of_failed_validations,
         array_contains('number_of_student_above_1000'::variant, failed_validations) as number_of_students_validation_failed,
-        array_contains('data_entry_confidence_greater_than_fifty_percent'::variant, failed_validations) as number_of_students_validation_failed,
-        array_contains('school_achievement_rating_above_above_two'::variant, failed_validations) as number_of_students_validationschool_achievement_rating_validation_failed_failed
+        array_contains('data_entry_confidence_greater_than_fifty_percent'::variant, failed_validations) as data_entry_confidence_validation_failed,
+        array_contains('school_achievement_rating_above_above_two'::variant, failed_validations) as school_achievement_rating_validation_failed_failed
     from base_model_with_assertions
 )
 

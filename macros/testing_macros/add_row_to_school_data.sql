@@ -3,7 +3,7 @@
 
 
     {% set query %}
-        INSERT INTO STEVE_D_RAW_DATA.SAMPLE_SCHOOL_DATA.school_districts (record_id, District_ID, District_Name, School_Name, file_name,  number_of_students, data_entry_confidence, school_achievement_rating, dbt_ready, file_processed, created_timestamp, modifed_timestamp)
+        INSERT INTO STEVE_D_RAW_DATA.SAMPLE_SCHOOL_DATA.school_districts (record_id, District_ID, District_Name, School_Name, file_name,  number_of_students, data_entry_confidence, school_achievement_rating, dbt_ready, file_processed, created_timestamp, modified_timestamp)
 
         with random_numer as 
 
@@ -34,7 +34,7 @@
                     TRUE as dbt_ready,
                     FALSE as file_processed,
                     CURRENT_TIMESTAMP() as created_timestamp,
-                    CURRENT_TIMESTAMP() as modifed_timestamp
+                    CURRENT_TIMESTAMP() as modified_timestamp
                 from school_data)
 
             select * from final_table;
