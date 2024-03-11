@@ -49,6 +49,7 @@ vars:
   testing_wait_seconds: 2
   ibp_start_date: '1999-01-01'
   ibp_end_date: '2023-12-01'
+  school_file_name: 'none'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
