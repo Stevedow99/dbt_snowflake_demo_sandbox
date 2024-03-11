@@ -5,6 +5,7 @@
     )
 }}
 
+with base_model as (
 select
     record_id,
     district_id,
@@ -23,4 +24,15 @@ from {{ source('school_data', 'school_districts') }}
 where 
     dbt_ready = true
     and file_processed = false
-    and file_name = {{ var('school_file_name') }}
+    and file_name = '{{ var('school_file_name') }}'),
+
+base_model_with_assertions as (
+     Select
+        *,
+        {{ dbt_assertions.assertions() | indent(4) }}
+    from base_model
+)
+
+select
+*
+from base_model_with_assertions

@@ -3,16 +3,6 @@ version: 2
 models:
   - name: staging_model_two
     description: "A summary model of school data including student numbers, data entry confidence, achievement rating, and more."
-    assertions:
-      number_of_student_above_1000:
-        description: 'ensures the number of students in a school is greater than 1000'
-        expression: number_of_students > 1000
-      data_entry_confidence_greater_than_fifty_percent:
-        description: 'ensures the score of confidence for data entry exceeds 50 percent'
-        expression: data_entry_confidence > 50
-      school_achievement_rating_above_above_two:
-        description: 'ensures the score school_achievement_rating is above 2'
-        expression: school_achievement_rating > 2
 
     columns:
       - name: record_id
@@ -40,16 +30,28 @@ models:
         description: "The total number of students in the school."
         tests:
           - not_null
+        assertions:
+          number_of_student_above_1000:
+            description: 'ensures the number of students in a school is greater than 1000'
+            expression: number_of_students > 1000
 
       - name: data_entry_confidence
         description: "A measure of confidence in the data entry process."
         tests:
           - not_null
+        assertions:
+          data_entry_confidence_greater_than_fifty_percent:
+            description: 'ensures the score of confidence for data entry exceeds 50 percent'
+            expression: data_entry_confidence > 50
 
       - name: school_achievement_rating
         description: "A rating of the school's overall achievement."
         tests:
           - not_null
+        assertions:
+          school_achievement_rating_above_above_two:
+            description: 'ensures the score school_achievement_rating is above 2'
+            expression: school_achievement_rating > 2
 
       - name: file_name
         description: "The name of the file containing the school's data."
