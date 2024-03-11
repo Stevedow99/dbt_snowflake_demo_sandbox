@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: your_model_name  # Replace with your actual model name
+    description: "A model summarizing school data including number of students, data entry confidence, and school achievement rating."
+    columns:
+      - name: number_of_students
+        description: "The total number of students across schools."
+        tests:
+          - not_null
+          - unique
+
+      - name: data_entry_confidence
+        description: "A measure of confidence in the data entry process, potentially as a percentage."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['High', 'Medium', 'Low']  # Assuming these are the potential values; adjust as necessary
+
+      - name: school_achievement_rating
+        description: "A rating of the school's overall achievement, possibly categorized by performance."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Excellent', 'Good', 'Average', 'Below Average', 'Poor']  # Adjust based on your rating system
