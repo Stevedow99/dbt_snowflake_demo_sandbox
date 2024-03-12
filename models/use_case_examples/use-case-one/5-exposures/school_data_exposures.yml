@@ -1,0 +1,19 @@
+version: 2
+
+exposures:
+
+  - name: school_reporting_metrics
+    label: School Reporting Metrics
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: >
+      School Reporting Data
+
+    depends_on:
+      - ref('model_to_filter_bad_data')
+      - ref('model_holding_all_records')
+
+    owner:
+      name: Steve Dowling
+      email: steve@jaffleshop.com
