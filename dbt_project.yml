@@ -50,7 +50,7 @@ vars:
   ibp_start_date: '1999-01-01'
   ibp_end_date: '2023-12-01'
   dbt_assertions:default_column: "failed_validations"
-  school_file_name: 'north_distict_data__17351.csv'
+  school_file_name: 'east_distict_data__15240.csv'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
