@@ -1,4 +1,6 @@
 packages:
-- package: AxelThevenot/dbt_assertions
-  version: 1.2.0
-sha1_hash: 676215c590b75869d3417c8d2c48731fa9ba6114
+  - package: AxelThevenot/dbt_assertions
+    version: 1.2.0
+  - git: https://{{env_var('DBT_ENV_SECRET_GIT_CREDENTIAL')}}@github.com/Stevedow99/sample_private_macro_package.git
+    revision: 5521d16585d08f9a51ca282dafb64f9644a7c90a
+sha1_hash: a6d3f66d1cbb05778e08c84c5112157f2d214c2b
