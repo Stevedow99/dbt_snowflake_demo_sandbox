@@ -32,6 +32,7 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
+    
 # on-run-start:
 #   - "alter warehouse transforming set warehouse_size=small;"
   # - '{{create_udfs()}}' # comment / uncomment this line to build UDFs called in the create_udfs macro
@@ -89,3 +90,7 @@ seeds:
       +column_types:
         effective_date: DATE
         rate: NUMBER   
+
+dispatch:
+  - macro_namespace: log_input
+    search_order: ['sample_private_macro', 'dbt_snowflake_demo_sandbox']
