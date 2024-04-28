@@ -10,7 +10,7 @@ sources:
       ext_full_refresh: true
       description: A description of the table
       external:
-        location: "@steve_d_sandbox.external_stages.steve_sa_s3_bucket"
+        location: "@steve_d_sandbox.external_stages.steve_sa_s3_bucket_raw_data"
         file_format: >
           (TYPE = 'CSV', FIELD_DELIMITER = ',', FIELD_OPTIONALLY_ENCLOSED_BY = '"', SKIP_HEADER = 1)
       columns:

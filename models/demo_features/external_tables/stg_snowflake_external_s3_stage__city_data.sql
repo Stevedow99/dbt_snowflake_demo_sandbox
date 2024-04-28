@@ -4,7 +4,6 @@ with source as (
 
 renamed as (
     select
-        value as id,
         c1 as LatD,
         c2 as LatM,
         c3 as LatS,
@@ -12,10 +11,10 @@ renamed as (
         c5 as LonD,
         c6 as LonM,
         c7 as LonS,
-        c8 as EW,
-        c9 as City,
-        c10 as State
+        REPLACE(c8, '"', '') AS EW,
+        REPLACE(c9, '"', '') AS City,
+        REPLACE(c10, '"', '') AS State
     from source
 )
 
-select * from renamed;
+select * from renamed
