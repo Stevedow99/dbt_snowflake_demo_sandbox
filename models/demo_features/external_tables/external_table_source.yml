@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+- name: snowflake_external_s3_stage
+  database: STEVE_D_SANDBOX
+  schema: EXTERNAL_STAGES
+  loader: S3
+  tables:
+    - name: city_data
+      ext_full_refresh: true
+      description: A description of the table
+      external:
+        location: "@steve_d_sandbox.external_stages.steve_sa_s3_bucket_raw_data"
+        file_format: >
+          (TYPE = 'CSV', FIELD_DELIMITER = ',', FIELD_OPTIONALLY_ENCLOSED_BY = '"', SKIP_HEADER = 1)
+      columns:
+        - name: c1
+          data_type: varchar
+        - name: c2
+          data_type: varchar
+        - name: c3
+          data_type: varchar
+        - name: c4
+          data_type: varchar
+        - name: c5
+          data_type: varchar
+        - name: c6
+          data_type: varchar
+        - name: c7
+          data_type: varchar
+        - name: c8
+          data_type: varchar
+        - name: c9
+          data_type: varchar
+        - name: c10
+          data_type: varchar
