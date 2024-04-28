@@ -1,4 +1,6 @@
 packages:
 - package: AxelThevenot/dbt_assertions
   version: 1.2.0
-sha1_hash: 676215c590b75869d3417c8d2c48731fa9ba6114
+- package: dbt-labs/dbt_external_tables
+  version: 0.8.7
+sha1_hash: f6452f203ad4ce862e7a19b61841e95e22a1aaf8
