@@ -1,8 +1,8 @@
-{% macro export_table_to_s3(stage, table_name, file_format_type='CSV', compression='NONE', field_enclosed_by='"', delimiter=',', max_file_size=104857600) %}
+{% macro export_table_to_s3(stage, model_name, file_format_type='CSV', compression='NONE', field_enclosed_by='"', delimiter=',', max_file_size=104857600) %}
 
 {% set query %}
 COPY INTO @{{ stage }}/data_output_
-  FROM {{ table_name }}
+  FROM {{ ref(model_name) }}
   FILE_FORMAT = (TYPE = '{{ file_format_type }}', COMPRESSION = '{{ compression }}', FIELD_OPTIONALLY_ENCLOSED_BY = '{{ field_enclosed_by }}', FIELD_DELIMITER = '{{ delimiter }}')
   MAX_FILE_SIZE = {{ max_file_size }};
 {% endset %}
