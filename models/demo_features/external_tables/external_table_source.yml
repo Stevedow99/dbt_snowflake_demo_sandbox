@@ -14,23 +14,23 @@ sources:
         file_format: >
           (TYPE = 'CSV', FIELD_DELIMITER = ',', FIELD_OPTIONALLY_ENCLOSED_BY = '"', SKIP_HEADER = 1)
       columns:
-        - name: LatD
+        - name: c1
           data_type: varchar
-        - name: LatM
+        - name: c2
           data_type: varchar
-        - name: LatS
+        - name: c3
           data_type: varchar
-        - name: NS
+        - name: c4
           data_type: varchar
-        - name: LonD
+        - name: c5
           data_type: varchar
-        - name: LonM
+        - name: c6
           data_type: varchar
-        - name: LonS
+        - name: c7
           data_type: varchar
-        - name: EW
+        - name: c8
           data_type: varchar
-        - name: City
+        - name: c9
           data_type: varchar
-        - name: State
+        - name: c10
           data_type: varchar
