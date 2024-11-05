@@ -19,7 +19,8 @@
             uniform(1, 100000, random()) as id,
             'pending' as status,
             current_timestamp() as created_timestamp,
-            current_timestamp() as modified_timestamp
+            current_timestamp() as modified_timestamp,
+            uniform(1, 100000, random()) as order_value
             )
         {% endset %}
 
@@ -34,7 +35,8 @@
             uniform(1, 100000, random()) as id,
             'pending' as status,
             current_timestamp() as created_timestamp,
-            current_timestamp() as modified_timestamp
+            current_timestamp() as modified_timestamp,
+            uniform(1, 100000, random()) as order_value
             )
         {% endset %}
 

@@ -1,0 +1,11 @@
+snapshots:
+  - name: customer_orders_snapshot
+    relation: ref('orders_table_pre_processing')
+    config:
+      schema: snapshots
+      unique_key: id
+      strategy: timestamp
+      updated_at: modified_timestamp
+      snapshot_meta_column_names:
+          dbt_valid_from: scd_start_data
+          dbt_valid_to: scd_end_date
