@@ -3,3 +3,6 @@ packages:
     version: 1.2.0
   - package: dbt-labs/dbt_external_tables
     version: 0.8.7
+
+  - private: Stevedow99/steve-utils
+    revision: main
