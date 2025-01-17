@@ -1,7 +1,7 @@
 {{
     config(
         materialized='table',
-        pre_hook=["CALL SYSTEM$WAIT(1, 'MINUTES')"]
+        pre_hook=["CALL SYSTEM$WAIT(10, 'MINUTES')"]
     )
 }}
 
