@@ -89,3 +89,7 @@ seeds:
       +column_types:
         effective_date: DATE
         rate: NUMBER   
+
+flags:
+  # set default for running this project -- anywhere, anytime, by anyone
+  log_format: json
