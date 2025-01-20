@@ -24,8 +24,7 @@ snapshot-paths: ["snapshots"]
 docs-paths: ["docs"]
 
 
-flags:
-  enable_iceberg_materializations: True
+
 
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
@@ -94,3 +93,4 @@ seeds:
 flags:
   # set default for running this project -- anywhere, anytime, by anyone
   log_format: json
+  enable_iceberg_materializations: True
