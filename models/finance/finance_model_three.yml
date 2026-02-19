@@ -1,0 +1,11 @@
+models:
+- name: finance_model_three
+  description: This model is designed to perform basic calculations and capture the
+    current timestamp for financial analysis purposes.
+  columns:
+  - name: my_frist_column
+    description: A static text column containing the phrase 'this is great!'.
+  - name: a_simple_calculation
+    description: A calculated value representing the division of 1 by 12.
+  - name: current_time
+    description: The current timestamp at the time of query execution.
