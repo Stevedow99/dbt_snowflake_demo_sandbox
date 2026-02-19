@@ -1,3 +1,8 @@
+{{
+    config(
+        materialized='table'
+    )
+}}
 
 Select 
     'this is great!' as my_frist_column,

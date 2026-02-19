@@ -9,3 +9,14 @@ models:
     description: A calculated value representing the division of 1 by 12.
   - name: current_time
     description: The current timestamp at the time of query execution.
+- name: finance_model_one
+  description: This model provides a simple demonstration of column creation and basic
+    calculations, including a static text, a basic arithmetic operation, and the current
+    timestamp.
+  columns:
+  - name: my_frist_column
+    description: A static text column with the value 'this is great!'.
+  - name: a_simple_calculation
+    description: A column representing the result of dividing 1 by 123.
+  - name: current_time
+    description: The current timestamp at the time of query execution.
